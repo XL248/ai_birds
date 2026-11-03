@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>自然保护区 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#conservation">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-mountain"></i> 自然保护区 · 鸟类的最后庇护所</h2>
+            <div class="subtitle">划设自然保护区是保护濒危鸟类最经典的策略之一</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/bhq_jb.jpg" alt="保护区">
+            </div></div>
+            <div class="text-wrap">
+                <p>截至2023年，全球已建立超过26万个陆地和海洋保护区，覆盖约16%的陆地面积和7%的海洋（IUCN）。这些保护区为全球超过70%的受威胁鸟类提供了关键栖息地。例如，中国的大熊猫国家公园不仅保护了大熊猫，也庇护了绿尾虹雉、红腹角雉等多种珍稀鸟类。</p>
+                <p>保护区的设计应科学合理，尽可能涵盖物种的完整生活史区域，并建立廊道连通孤立斑块，防止种群隔离。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/bhq_xh.jpeg" alt="保护区">
+            </div></div>
+            <div class="text-wrap">
+                <p>然而，许多保护区面临“纸上保护”的困境，由于经费不足、管理不善，非法狩猎和栖息地破坏仍时有发生。有效的管理需要社区共管、执法监督和科学监测相结合。</p>
+                <p>鸟类是保护区管理成效的重要指示生物。通过长期监测鸟类种群动态，可以评估管理措施的有效性，并及时调整保护策略。</p>
+            </div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/bhq_nl.jpg" alt="鸟类">
+            </div></div>
+            <div class="text-wrap">
+                <p>在中国，自然保护区体系已初具规模，但许多保护区面积偏小、破碎化严重。未来应推动以国家公园为主体的保护地体系建设，整合相邻保护区，形成生态保育网络。</p>
+                <p class="source">📖 参考文献：<a href="https://www.iucn.org/" target="_blank">点此处</a> 查看世界自然保护联盟（IUCN）保护区数据库。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

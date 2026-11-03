@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>虫害控制 · 自然的守护者 | 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+    <style>
+        .eco-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .eco-block.reverse {
+            flex-direction: row-reverse;
+        }
+        .eco-block .img-wrap {
+            flex: 1;
+            min-width: 200px;
+        }
+        .eco-block .text-wrap {
+            flex: 1.2;
+        }
+        .eco-block .img-placeholder {
+            min-height: 200px;
+            background: #1a221a;
+            border-radius: 24px;
+            border: 1px solid #6f8f5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8fb07a;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+        .eco-block .img-placeholder i {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+        .eco-block .text-wrap p {
+            color: #d4d0c5;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .eco-block .text-wrap .source {
+            font-size: 0.9rem;
+            color: #9fc88a;
+        }
+        .eco-block .text-wrap .source a {
+            color: #b8d8a0;
+            text-decoration: underline;
+            transition: 0.2s;
+        }
+        .eco-block .text-wrap .source a:hover {
+            color: #e0f0d0;
+            text-shadow: 0 0 6px #6f9a5f;
+        }
+        @media (max-width: 768px) {
+            .eco-block, .eco-block.reverse {
+                flex-direction: column;
+            }
+            .eco-block .img-wrap {
+                width: 100%;
+            }
+        }
+        .page-title {
+            margin-bottom: 40px;
+        }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #b3d8a0;
+            border-bottom: 2px solid #6f9a5f;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#bird-guide">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-bug"></i> 虫害控制 · 自然的守护者</h2>
+            <div class="subtitle" style="margin-top: 8px;">食虫鸟类是天然的生物防治员，守护着农田与森林的健康</div>
+        </div>
+
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../image/fz_sq.jpg" alt="食虫鸟类捕食害虫">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>食虫鸟类是农业和森林生态系统中重要的天然害虫控制者。据估计，全球食虫鸟类每年消耗4至5亿吨昆虫猎物。一项覆盖55篇文献、179个案例研究的全球荟萃分析表明，野生鸟类能减少作物损害和害虫数量，同时显著提高作物产量。</p>
+            </div>
+        </div>
+
+        <div class="eco-block reverse">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../image/fz_zmn.jpg" alt="食虫鸟类捕食害虫">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>鸟类作为生物防治 agents 的积极效应在采用传统化学方法的常规农场中尤为显著。在森林中，鸟类消耗的昆虫占全球总量的75%（约每年3亿吨）。鸟类提供的生物防治服务价值数以百万美元计。</p>
+            </div>
+        </div>
+
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../image/fz_tt.jpg" alt="梯田">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>保护食虫鸟类不仅可减少农药使用，还能维持生态平衡，促进农业可持续发展。研究表明，每公顷农田中鸟类可减少约30%的虫害损失。</p>
+                <p class="source">📖 权威来源：<a href="https://datazone.birdlife.org/articles/birds-control-insect-pests-in-farmlands-and-forests" target="_blank">点此处</a> 查看BirdLife International《Birds control insect pests in farmlands and forests》（2023）</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术研究，仅作展示</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="feather-particle-container"></div>
+</body>
+</html>

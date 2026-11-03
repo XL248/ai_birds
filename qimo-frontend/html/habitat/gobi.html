@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>戈壁栖息地 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../js/main.js" defer></script>
+    <script src="../../config/api-base.js"></script>
+    <script src="../../app/api.js"></script>
+    <script src="../../js/auth-modal.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .section-header-inner { margin: 40px 0 20px; }
+        .section-header-inner h3 { font-size: 1.8rem; color: #c8e0b0; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../index.html#hero">首页</a></li>
+                <li><a href="../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../index.html#habitat">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-mountain"></i> 戈壁 · 砾石荒原</h2>
+            <div class="subtitle">砾石覆盖的干旱地带，与荒漠相似但更为严酷，拥有独特鸟类群落</div>
+        </div>
+        <div class="eco-block">
+            <div class="text-wrap">
+                <p>戈壁是荒漠的一种类型，以砾石和沙土混合覆盖为特征，气候极端干旱，昼夜温差巨大。戈壁主要分布在中亚、蒙古和中国西北部，如著名的蒙古戈壁和新疆准噶尔盆地。</p>
+                <p>戈壁鸟类物种多样性较低，但具有很高的特有性和科学研究价值。它们适应了砾石地面、稀疏植被和稀少水源的环境，是极端生态系统的幸存者。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟中亚鸟类报告。</p>
+            </div>
+        </div>
+        <div class="section-header-inner"><h3><i class="fas fa-feather"></i> 典型戈壁鸟类及适应</h3></div>
+        <div class="eco-block reverse">
+            <div class="text-wrap">
+                <p><strong>沙百灵</strong>：广泛分布在戈壁地带，羽毛砂色与地面融为一体，善于奔跑和快速飞行，以种子和昆虫为食，繁殖期筑巢于地面浅坑。</p>
+                <p><strong>黑喉石䳭</strong>：常见于戈壁灌丛，以昆虫为主食，雄鸟黑色喉部在繁殖期明显，利用鼠兔洞穴或岩石缝隙筑巢。</p>
+                <p><strong>蒙古沙雀</strong>：小型雀类，喜群居，以种子为食，在戈壁水源附近活动，适应干旱。</p>
+                <p><strong>灰山鹑</strong>：地栖鸟类，分布在中亚戈壁和山地，以植物茎叶和种子为食，善于奔走。</p>
+                <p>这些鸟类通过保护色、集群饮水、利用隐蔽裂隙等方式适应戈壁环境。</p>
+            </div>
+        </div>
+        <div class="section-header-inner"><h3><i class="fas fa-leaf"></i> 戈壁鸟类的生态功能</h3></div>
+        <div class="eco-block">
+            <div class="text-wrap">
+                <p><strong>种子传播</strong>：食种子鸟类如沙雀，帮助植物种子扩散，维持戈壁植被更新。</p>
+                <p><strong>虫害控制</strong>：食虫鸟类控制戈壁昆虫数量，避免害虫暴发。</p>
+                <p><strong>生态指示</strong>：戈壁鸟类对气候变化和水源变化敏感，是监测戈壁生态健康的良好指示生物。</p>
+            </div>
+        </div>
+        <div class="section-header-inner"><h3><i class="fas fa-shield-alt"></i> 戈壁鸟类面临的威胁</h3></div>
+        <div class="eco-block reverse">
+            <div class="text-wrap">
+                <p><strong>过度放牧</strong>：牲畜过度啃食导致植被退化，水源枯竭，影响鸟类栖息。</p>
+                <p><strong>矿业开发</strong>：露天采矿破坏戈壁地表，污染水源，干扰鸟类繁殖。</p>
+                <p><strong>气候变化</strong>：干旱加剧，使得戈壁鸟类繁殖成功率降低。</p>
+                <p><strong>捕猎</strong>：部分鸟种因狩猎压力下降。</p>
+                <p>保护措施包括限制放牧、划定矿区生态红线、建立戈壁自然保护区（如新疆卡拉麦里保护区），并加强迁徙路线监测。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block">
+            <div class="text-wrap">
+                <p>戈壁是地球上最脆弱的环境之一，但也是科学研究和自然保护的重要区域。通过适度放牧管理、发展荒漠生态旅游、加强科学考察，我们可以在发展与保护之间取得平衡，让戈壁鸟类拥有可持续的未来。</p>
+                <p style="font-style:italic; color:#b8d8a0;">—— 砾石之下，生命坚韧；苍茫戈壁，亦需守护。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国荒漠化防治政策。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

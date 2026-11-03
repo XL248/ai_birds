@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>秧鸡科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-feather"></i> 秧鸡科 · 隐秘的沼泽居民</h2>
+            <div class="subtitle">中小型涉禽，体色隐蔽，善奔走和短距离飞行，常在芦苇丛中活动</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142822.png" alt="秧鸡科典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>秧鸡科（Rallidae）</strong>包含约40属150余种，广泛分布于全球湿地。体型中小，腿长，趾长且无蹼，善行走和游泳。羽毛多为褐、灰、黑色，便于隐身。</p>
+                <p>杂食性，吃植物种子、昆虫、小鱼。繁殖期筑巢于沼泽草丛中，每窝产4-12枚卵。许多种类具迁徙习性，是湿地生态系统中的重要组成部分。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+
+        <!-- 澳洲紫水鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 澳洲紫水鸡（<em>Porphyrio melanotus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142929.png" alt="澳洲紫水鸡"></div></div>
+            <div class="text-wrap">
+                <p>澳洲紫水鸡是一种大型秧鸡，体长约40-50cm，羽毛以紫色和蓝色为主，喙红色，额甲鲜红色，脚趾细长。分布于澳大利亚、新西兰及太平洋岛屿，在中国偶见于云南、海南等地。</p>
+                <p>常栖息于湖泊、沼泽、水田等湿地环境，以水生植物、种子、昆虫、小鱼为食。它们善于游泳和攀爬芦苇，常在晨昏活动，鸣声响亮。繁殖期9-12月（南半球），筑巢于芦苇丛中，每窝产3-6枚卵。</p>
+                <p>澳洲紫水鸡在中国为罕见迷鸟，尚无稳定繁殖记录。由于湿地破坏，其种群面临一定威胁，保护湿地对其至关重要。</p>
+            </div>
+        </div>
+
+        <!-- 白骨顶 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 白骨顶（<em>Fulica atra</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20143050.png" alt="白骨顶"></div></div>
+            <div class="text-wrap">
+                <p>白骨顶体长约35-40cm，全身黑色，头顶具白色额甲。广泛分布于欧亚大陆、非洲、澳洲的淡水湿地，包括湖泊、池塘和水库。</p>
+                <p>善于游泳和潜水，以水生植物、藻类为食，也吃螺类。繁殖期4-7月，筑浮巢于芦苇丛，每窝产6-10枚卵。在中国常见越冬鸟，群集于开阔水面。</p>
+            </div>
+        </div>
+        <!-- 黑水鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 黑水鸡（<em>Gallinula chloropus</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20143330.png" alt="黑水鸡"></div></div>
+            <div class="text-wrap">
+                <p>黑水鸡体长约30-35cm，全身灰黑色，嘴红色，嘴基黄色额甲。分布于全球暖温带及热带湿地，常见于湖泊、池塘、稻田。</p>
+                <p>善游泳和行走，以植物、昆虫、小鱼为食。繁殖期3-8月，筑巢于芦苇丛中，每窝产5-8枚卵。适应性强，城市公园常见，与人类伴居。</p>
+            </div>
+        </div>
+        <!-- 董鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 董鸡（<em>Gallicrex cinerea</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20143504.png" alt="董鸡"></div></div>
+            <div class="text-wrap">
+                <p>董鸡体长约40-45cm，全身灰褐色，繁殖期雄鸟具黑色冠羽和红色喙基。分布于亚洲南部的稻田和沼泽，在中国为夏候鸟，繁殖于长江以南。</p>
+                <p>性隐蔽，晨昏活动，以植物、昆虫为食。繁殖期5-7月，筑巢于稻田或沼泽草丛中，每窝产4-6枚卵。因稻田农药使用，种群数量有所下降。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20143603.png" alt="秧鸡科保护"></div></div>
+            <div class="text-wrap">
+                <p>秧鸡科鸟类对栖息地变化敏感，保护芦苇沼泽和稻田湿地至关重要。减少农药使用、保留自然河岸、恢复湿地植被有助于其繁衍。公众可通过参与湿地保护活动支持它们。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 物种评估。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>观鸟日记 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../js/main.js" defer></script>
+    <script src="../../config/api-base.js"></script>
+    <script src="../../app/api.js"></script>
+    <script src="../../js/auth-modal.js" defer></script>
+    <style>
+        .diary-section { padding-top: 120px; min-height: 80vh; }
+        .diary-layout { display: grid; grid-template-columns: 1fr 360px; gap: 32px; align-items: start; }
+
+        .diary-card {
+            background: rgba(20,28,20,0.85); border: 1px solid #4a6a3a;
+            border-radius: 20px; padding: 24px; margin-bottom: 20px;
+            backdrop-filter: blur(6px); transition: 0.2s;
+        }
+        .diary-card:hover { border-color: #6f9a5f; }
+        .diary-card .d-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .diary-card .d-author { color: #9fc88a; font-family: 'Cinzel', serif; font-size: 0.9rem; }
+        .diary-card .d-title { font-family: 'Cinzel', serif; color: #c8e0b0; font-size: 1.1rem; margin-bottom: 8px; }
+        .diary-card .d-content { color: #b0c0a0; font-size: 0.9rem; line-height: 1.6; }
+        .diary-card .d-meta { color: #6a8a5a; font-size: 0.78rem; margin-top: 10px; display: flex; gap: 16px; flex-wrap: wrap; border-top: 1px dashed #3a5a2a; padding-top: 10px; }
+
+        .write-card {
+            background: rgba(20,28,20,0.85); border: 1px solid #4a6a3a;
+            border-radius: 24px; padding: 24px; backdrop-filter: blur(6px);
+            position: sticky; top: 100px;
+        }
+        .write-card h3 { font-family: 'Cinzel', serif; color: #b8d8a0; margin-bottom: 16px; text-align: center; letter-spacing: 2px; }
+        .write-card label { color: #9fc88a; font-size: 0.8rem; font-family: 'Cinzel', serif; margin: 10px 0 4px; display: block; }
+        .write-card input, .write-card textarea {
+            background: #141c14; border: 1px solid #4a6a3a; border-radius: 14px;
+            color: #d4d0c5; font-family: 'Inter', sans-serif; padding: 10px 14px;
+            width: 100%; font-size: 0.9rem; transition: 0.2s; resize: vertical;
+        }
+        .write-card input:focus, .write-card textarea:focus { border-color: #8fc078; outline: none; box-shadow: 0 0 6px rgba(100,160,80,0.3); }
+        .write-card textarea { min-height: 80px; }
+        .write-card .btn-submit { width: 100%; margin-top: 16px; }
+        .write-card .login-hint { text-align: center; color: #8aa87a; font-size: 0.85rem; margin-top: 12px; }
+
+        .btn-submit {
+            font-family: 'Cinzel', serif; letter-spacing: 2px;
+            background: rgba(70,110,60,0.3); border: 1px solid #6f9a5f;
+            border-radius: 60px; color: #c8e0b0; padding: 10px;
+            cursor: pointer; transition: 0.2s; font-size: 0.9rem;
+        }
+        .btn-submit:hover { background: #3f6a30; border-color: #8fc078; }
+
+        .pagination { display: flex; gap: 8px; justify-content: center; margin: 30px 0; }
+        .pagination button {
+            background: rgba(20,28,20,0.7); border: 1px solid #4a6a3a; border-radius: 12px;
+            color: #b8d8a0; padding: 6px 16px; cursor: pointer; font-family: 'Cinzel', serif;
+            transition: 0.2s;
+        }
+        .pagination button:hover, .pagination button.active { background: #3f6a30; border-color: #8fc078; }
+        .pagination button:disabled { opacity: 0.3; cursor: default; }
+
+        @media (max-width: 768px) { .diary-layout { grid-template-columns: 1fr; } .write-card { position: static; } }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif"><img src="../../image/top_yelu.gif" alt="动图"></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../index.html#hero">首页</a></li>
+                <li><a href="../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../index.html#gallery">观鸟日记</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="diary-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-book-open"></i> 观鸟日记 <i class="fas fa-book-open"></i></h2>
+            <div class="subtitle">记录每一次与鸟类的相遇</div>
+        </div>
+
+        <div class="diary-layout">
+            <div>
+                <div id="diary-list"></div>
+                <div class="pagination" id="pagination"></div>
+            </div>
+            <div class="write-card" id="write-card">
+                <h3><i class="fas fa-pen-fancy"></i> 写日记</h3>
+                <div id="write-form-wrap" style="display:none;">
+                    <label>标 题</label>
+                    <input id="diary-title" placeholder="今天的观鸟日记" maxlength="128" />
+                    <label>鸟 种</label>
+                    <input id="diary-bird" placeholder="看到了什么鸟？" maxlength="64" />
+                    <label>地 点</label>
+                    <input id="diary-location" placeholder="在哪里看到的？" maxlength="64" />
+                    <label>内 容</label>
+                    <textarea id="diary-content" placeholder="记录下这次观鸟经历..." maxlength="2000"></textarea>
+                    <button class="btn-submit" id="btn-diary-submit">发 布</button>
+                </div>
+                <div class="login-hint" id="diary-login-hint">
+                    <a href="#" class="nav-login-btn" style="color:#b8d8a0;">登录</a> 后写日记
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+
+<script>
+let currentPage = 1, totalPages = 1;
+
+$(function () {
+  loadDiaries(1);
+  checkLoginForWrite();
+
+  $('#btn-diary-submit').on('click', function () {
+    const title = $('#diary-title').val().trim();
+    const content = $('#diary-content').val().trim();
+    const location = $('#diary-location').val().trim();
+    const birdName = $('#diary-bird').val().trim();
+    if (!title) return showToast('请填写标题');
+
+    QIMO_API.post('/api/social/diary', { title, content, location, birdName }).then(d => {
+      showToast(d.message);
+      if (d.success) {
+        $('#diary-title, #diary-content, #diary-location, #diary-bird').val('');
+        loadDiaries(1);
+      }
+    });
+  });
+
+  function checkLoginForWrite() {
+    QIMO_API.get('/api/auth/me').then(d => {
+      if (d.loggedIn) { $('#write-form-wrap').show(); $('#diary-login-hint').hide(); }
+    }).catch(() => { /* 未登录或后端不可用时保持提示 */ });
+  }
+});
+
+function loadDiaries(page) {
+  currentPage = page;
+  QIMO_API.get(`/api/social/diaries?page=${page}`).then(d => {
+    if (!d.success) return;
+    totalPages = d.totalPages;
+    if (!d.diaries.length) {
+      $('#diary-list').html('<p style="color:#6a8a5a;text-align:center;padding:40px;">还没有日记，来写第一篇吧~</p>');
+      $('#pagination').html('');
+      return;
+    }
+    $('#diary-list').html(d.diaries.map(di => `
+      <div class="diary-card">
+        <div class="d-header">
+          <span class="d-author"><i class="fas fa-feather-alt"></i> ${escapeHTML(di.nickname || di.username)}</span>
+        </div>
+        <div class="d-title">${escapeHTML(di.title)}</div>
+        <div class="d-content">${escapeHTML(di.content || '').substring(0,200)}${(di.content||'').length > 200 ? '...' : ''}</div>
+        <div class="d-meta">
+          ${di.bird_name ? '<span>🐦 '+escapeHTML(di.bird_name)+'</span>' : ''}
+          ${di.location ? '<span>📍 '+escapeHTML(di.location)+'</span>' : ''}
+          <span>🕐 ${new Date(di.created_at).toLocaleString('zh-CN')}</span>
+        </div>
+      </div>`).join(''));
+    renderPagination();
+  });
+}
+
+function renderPagination() {
+  let html = `<button ${currentPage<=1?'disabled':''} onclick="loadDiaries(${currentPage-1})">←</button>`;
+  for (let i = 1; i <= totalPages; i++) {
+    html += `<button class="${i===currentPage?'active':''}" onclick="loadDiaries(${i})">${i}</button>`;
+  }
+  html += `<button ${currentPage>=totalPages?'disabled':''} onclick="loadDiaries(${currentPage+1})">→</button>`;
+  $('#pagination').html(html);
+}
+
+function showToast(msg) {
+  const $t = $(`<div class="toast-msg" style="display:none;">${escapeHTML(msg)}</div>`);
+  $('body').append($t); $t.fadeIn(200).delay(1500).fadeOut(400, function () { $t.remove(); });
+}
+
+function escapeHTML(str) {
+  const div = document.createElement('div'); div.textContent = str; return div.innerHTML;
+}
+</script>
+</body>
+</html>

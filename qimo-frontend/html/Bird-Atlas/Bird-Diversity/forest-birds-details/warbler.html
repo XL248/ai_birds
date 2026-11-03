@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>柳莺属 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../forest-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-feather-alt"></i> 柳莺属 · 枝叶间的音符</h2>
+            <div class="subtitle">体型微小，羽毛翠绿或橄榄色，以灵动的姿态和悦耳的鸣声活跃于森林冠层</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20112724.png" alt="柳莺属典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>柳莺属（Phylloscopus）</strong>包含约80种小型雀形目鸟类，广泛分布于欧亚大陆、非洲和东南亚。体型极小，体长仅10-14cm，羽毛以橄榄绿、黄绿色为主，具有明显的眉纹或翼带。主要以小昆虫、蜘蛛为食，常在树冠层枝叶间不停穿梭啄食。</p>
+                <p>多数种类为长途迁徙候鸟，春季从越冬地返回北方繁殖。繁殖期营巢于地面或低矮灌丛，每窝产3-6枚卵。柳莺属是森林中重要的食虫鸟类，对控制害虫有重要价值。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 黄眉柳莺 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 黄眉柳莺（<em>Phylloscopus inornatus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20112851.png" alt="黄眉柳莺"></div></div>
+            <div class="text-wrap">
+                <p>黄眉柳莺体长约10-12cm，上体橄榄绿色，具两道黄白色翅斑，眉纹淡黄色。繁殖于西伯利亚和东北亚，越冬于东南亚。在中国为常见迁徙过境鸟。</p>
+                <p>以蚜虫、小蠹虫等为食，常与其他柳莺混群。鸣声清脆，为三音节“tsi-tsi-tsi”。</p>
+            </div>
+        </div>
+        <!-- 冠纹柳莺 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 冠纹柳莺（<em>Phylloscopus reguloides</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113018.png" alt="冠纹柳莺"></div></div>
+            <div class="text-wrap">
+                <p>冠纹柳莺体长约11-13cm，上体橄榄绿色，头顶具三道黑色冠纹，眉纹白色。分布于喜马拉雅山脉及中国西南部山地。</p>
+                <p>栖于山地常绿阔叶林，以昆虫为食。繁殖期4-7月，筑巢于地面苔藓中。在中国为留鸟或垂直迁徙鸟。</p>
+            </div>
+        </div>
+        <!-- 褐柳莺 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 褐柳莺（<em>Phylloscopus fuscatus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113104.png" alt="褐柳莺"></div></div>
+            <div class="text-wrap">
+                <p>褐柳莺体长约11-13cm，上体灰褐色，下体淡黄白色，具白色眉纹。繁殖于东北亚和西伯利亚，越冬于东南亚，在中国为迁徙过境鸟。</p>
+                <p>常见于灌丛和草地，以昆虫为食。鸣声为单调的“chak-chak”声，常单独活动。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113205.png" alt="柳莺属保护"></div></div>
+            <div class="text-wrap">
+                <p>柳莺属对森林虫害控制至关重要，保护各类林地、减少农药使用是保护关键。公众可通过种植本土树木、参与鸟类迁徙监测来帮助它们。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

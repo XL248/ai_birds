@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>猛禽与高山鸟 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+    <style>
+        /* 与湿地页面完全相同的卡片样式，可共用，但为了独立文件保留 */
+        .forest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        .bird-card {
+            background: rgba(20, 30, 20, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            border: 1px solid #5a7a4a;
+            padding: 20px 20px 18px;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
+        .bird-card:hover {
+            border-color: #8fc078;
+            transform: translateY(-5px);
+            background: #1e2a1e;
+        }
+        .bird-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .bird-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #2a3a2a;
+            border: 2px solid #6f9a5f;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b8d8a0;
+            font-size: 1.8rem;
+            overflow: hidden;
+        }
+        .bird-avatar i {
+            font-size: 2.2rem;
+            color: #9fc88a;
+        }
+        .bird-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #d4e8c0;
+            text-shadow: 0 0 6px #4a7a3a;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        .bird-desc {
+            color: #b8c8a8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 10px 0 16px;
+            flex: 1;
+            padding: 6px 0;
+            border-top: 1px dashed #4a6a3a;
+            border-bottom: 1px dashed #4a6a3a;
+        }
+        .bird-desc .placeholder {
+            opacity: 0.7;
+            font-style: italic;
+        }
+        .bird-detail-link {
+            align-self: flex-end;
+            font-family: 'Cinzel', serif;
+            color: #b8d8a0;
+            background: rgba(60, 100, 50, 0.25);
+            padding: 6px 18px;
+            border-radius: 40px;
+            border: 1px solid #6f9a5f;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .bird-detail-link:hover {
+            background: #3f6a30;
+            border-color: #8fc078;
+            color: #f0f8e8;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 600px) {
+            .bird-header { flex-wrap: wrap; }
+            .bird-name { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#bird-guide">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-mountain"></i> 猛禽与高山鸟 · 天空之王 <i class="fas fa-mountain"></i></h2>
+            <div class="subtitle">翱翔于山巅的猛禽与适应高寒环境的鸟类，是荒野的象征</div>
+        </div>
+        <div class="forest-grid">
+            <!-- 1. 雪鸡属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/tx_xueji.jpg" alt="雪鸡">
+
+                    </i></div>
+                    <div class="bird-name">雪鸡属</div>
+                </div>
+                <div class="bird-desc"><span class="placeholder">高山草甸裸岩，耐寒集群，不善飞行。</span></div>
+                <a href="raptor-alpine-birds-details/snowcock.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+            <!-- 2. 雪雀属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/tx_xueque.jpg" alt="雪雀">
+
+                    </div>
+                    <div class="bird-name">雪雀属</div>
+                </div>
+                <div class="bird-desc"><span class="placeholder">高海拔流石滩，耐寒地栖，集群觅食。</span></div>
+                <a href="raptor-alpine-birds-details/snowfinch.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+            <!-- 3. 雉鹑属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/tx_zhichun.jpg" alt="鹌鹑">
+                    </div>
+                    <div class="bird-name">雉鹑属</div>
+                </div>
+                <div class="bird-desc"><span class="placeholder">高山灌丛特有，隐蔽性强，地栖奔走。</span></div>
+                <a href="raptor-alpine-birds-details/pheasant-partridge.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+            <!-- 4. 红嘴山鸦属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                <div class="bird-avatar">
+                    <img src="../../../image/tx_shanya.jpg" alt="红嘴山鸦">
+                </div>
+                <div class="bird-name">红嘴山鸦属</div>
+                </div>
+            <div class="bird-desc"><span class="placeholder">高山悬崖栖息，飞行灵巧，杂食性。</span></div>
+            <a href="raptor-alpine-birds-details/red-billed-chough.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+        <!-- 5. 雕属 -->
+        <div class="bird-card">
+            <div class="bird-header">
+                <div class="bird-avatar">
+                    <img src="../../../image/tx_diao.jpg" alt="雕">
+                </div>
+                <div class="bird-name">雕属</div>
+            </div>
+            <div class="bird-desc"><span class="placeholder">大型猛禽，高空翱翔，捕食大中型兽类。</span></div>
+            <a href="raptor-alpine-birds-details/eagle.html" class="bird-detail-link">了解详情 →</a>
+        </div>
+        <!-- 6. 鹰属 -->
+        <div class="bird-card">
+            <div class="bird-header">
+                <div class="bird-avatar">
+                    <img src="../../../image/tx_ying.jpg" alt="鹰">
+                </div>
+                <div class="bird-name">鹰属</div>
+            </div>
+            <div class="bird-desc"><span class="placeholder">中小型猛禽，林栖伏击，食鸟兽蛇。</span></div>
+            <a href="raptor-alpine-birds-details/alpine-hawk.html" class="bird-detail-link">了解详情 →</a>
+        </div>
+        <!-- 7. 隼属 -->
+        <div class="bird-card">
+            <div class="bird-header">
+                <div class="bird-avatar">
+                    <img src="../../../image/tx_sun.png" alt="隼">
+                </div>
+                <div class="bird-name">隼属</div>
+            </div>
+            <div class="bird-desc"><span class="placeholder">飞行极速，俯冲捕猎，善捕小鸟。</span></div>
+            <a href="raptor-alpine-birds-details/falcon.html" class="bird-detail-link">了解详情 →</a>
+        </div>
+        <!-- 8. 兀鹫属 -->
+        <div class="bird-card">
+            <div class="bird-header">
+                <div class="bird-avatar">
+                    <img src="../../../image/tx_jiu.jpg" alt="兀鹫">
+                </div>
+                <div class="bird-name">兀鹫属</div>
+            </div>
+            <div class="bird-desc"><span class="placeholder">大型食腐猛禽，高山盘旋，翼展宽大。</span></div>
+            <a href="raptor-alpine-birds-details/vulture.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 所有内容均为占位设计</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

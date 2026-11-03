@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鹭亚科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-crow"></i> 鹭亚科 · 湿地的优雅身影</h2>
+            <div class="subtitle">长腿长颈的涉禽，以静制动，是湿地生态系统中不可或缺的捕食者</div>
+        </div>
+        <!-- 总括 -->
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113504.png" alt="鹭亚科典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鹭亚科（Ardeinae）</strong>是鹭科中最大的亚科，包含苍鹭属（<em>Ardea</em>）、白鹭属（<em>Egretta</em>）、池鹭属（<em>Ardeola</em>）等约16属60余种。它们广泛分布于全球各地的淡水湿地、海岸、稻田和红树林。鹭亚科鸟类体型多样，但均具长腿、长颈和长而尖锐的喙，适应涉水捕食。</p>
+                <p>它们多白天活动，常在水边静立或缓步前行，以突然袭击的方式捕食鱼类、两栖类、昆虫和小型哺乳动物。繁殖期多集群营巢于树上或芦苇丛中，巢由枯枝构成。许多种类具有繁殖羽，如苍鹭的冠羽和白鹭的蓑羽。</p>
+                <p>鹭亚科是湿地生物多样性的重要指示物种，其种群数量变化可反映湿地生态健康状况。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 1. 苍鹭 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 苍鹭（<em>Ardea cinerea</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113545.png" alt="苍鹭"></div></div>
+            <div class="text-wrap">
+                <p>苍鹭是欧亚大陆及非洲最常见的大型鹭类，体长约90-100cm，翼展可达2m。成鸟背部灰色，颈部白色带黑色纵纹，头顶黑色，喙黄色。繁殖期眼后具黑色饰羽。</p>
+                <p>常活动于浅水区域，以鱼类、蛙类、昆虫为食。捕食时长时间静立，耐心等待猎物靠近，然后快速刺出长喙。苍鹭的飞行姿态优雅，缩颈振翅，是湿地标志性鸟类。</p>
+                <p>繁殖期3-6月，集群营巢于高大树木或芦苇丛中，每窝产3-5枚淡蓝色卵，孵化期约25天。苍鹭适应力强，也常在城市公园池塘出现。</p>
+            </div>
+        </div>
+        <!-- 2. 小白鹭 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 小白鹭（<em>Egretta garzetta</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113626.png" alt="小白鹭"></div></div>
+            <div class="text-wrap">
+                <p>小白鹭体型较小，约55-65cm，通体洁白，喙黑色，脚黄色。繁殖期后头具两根细长冠羽，背部和前胸具蓑羽，极为雅致。广泛分布于欧亚大陆南部、非洲及澳洲。</p>
+                <p>喜栖息于浅水湿地、稻田和河岸，常以小群活动，用足搅动水中泥沙惊扰猎物，然后迅速啄食。以小鱼、虾、水生昆虫为主食。</p>
+                <p>繁殖期4-7月，集群营巢于树上或灌丛，每窝产4-5枚卵。小白鹭曾因羽毛贸易而数量锐减，现受保护后种群恢复良好，在许多湿地公园常见。</p>
+            </div>
+        </div>
+        <!-- 3. 池鹭 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 池鹭（<em>Ardeola bacchus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113708.png" alt="池鹭"></div></div>
+            <div class="text-wrap">
+                <p>池鹭为亚洲特有物种，体长约45-50cm。繁殖羽时，头部、颈部和胸部呈深栗色，背部深蓝黑色，翼白色，非繁殖羽则多纵纹。常在稻田、池塘、沼泽地活动，以鱼、蛙、昆虫为食。</p>
+                <p>习性隐蔽，常单独或成小群活动，遇惊扰则飞至树上。繁殖期5-7月，集群或单对营巢于树冠，每窝产3-5枚卵。池鹭在中国南方为常见夏候鸟，冬季南迁。</p>
+            </div>
+        </div>
+        <!-- 4. 大白鹭 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 大白鹭（<em>Ardea alba</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113752.png" alt="大白鹭"></div></div>
+            <div class="text-wrap">
+                <p>大白鹭体型大，约85-100cm，通体白色，喙黄色（繁殖期变黑），脚黑色。繁殖期背部和胸部具细长蓑羽。全球广布于温带及热带湿地。</p>
+                <p>常独自或成小群活动，以鱼类、两栖类、小型哺乳类为食，捕食方式以静立守候为主。繁殖期3-6月，集群营巢于树上，每窝产3-4枚卵。20世纪因羽毛贸易受重创，现已恢复。</p>
+            </div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20113843.png" alt="鹭亚科保护"></div></div>
+            <div class="text-wrap">
+                <p>鹭亚科鸟类是湿地生态系统健康的重要指示物种。保护湿地、减少农药使用、恢复自然河岸是保护它们的关键。公众可通过观鸟活动、湿地志愿服务参与保护。</p>
+                <p class="source">📖 了解更多：<a href="https://www.ramsar.org/" target="_blank">点此处</a> 查看拉姆萨尔湿地公约。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">...</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# 前端工程 .gitignore
+# 这个工程没有 npm 依赖，需要忽略的东西很少。
+
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# 本地个人配置：里面有自己机器的端口和后端地址，不要提交
+qimo.config.local.json
+
+# 编辑器
+.idea/
+.vscode/
+*.iml

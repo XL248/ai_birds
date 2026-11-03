@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鸱鸮属 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../forest-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-owl"></i> 鸱鸮科 · 夜林猛禽</h2>
+            <div class="subtitle">夜行性猎手，以敏锐的听觉和视觉捕食，在森林生态系统中扮演重要角色</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20103800.png" alt="鸱鸮属典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鸱鸮属（Strix）</strong>为鸱鸮科中的一类，包括林鸮、灰林鸮等约20种，分布于全球温带及热带森林。它们具有圆大的头部、面盘发达、虹膜深色、喙钩状，适应夜间捕猎。以鼠类、小鸟、昆虫为食，是森林中重要的啮齿类控制者。</p>
+                <p>繁殖期筑巢于树洞或人工巢箱，每窝产2-4枚卵。雌鸟孵卵，雄鸟供食。部分种类不迁徙，领地意识强。由于森林砍伐，部分种群减少，需加强保护。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 雕梟 -->
+        <div class="species-title"><i class="fas fa-owl"></i> 雕鸮（<em>Bubo bubo</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20103936.png" alt="雕鸮"></div></div>
+            <div class="text-wrap">
+                <p>雕鸮是国内体型最大的鸮类，体长可达60-70cm，通体棕褐布满斑驳纹路，耳羽簇显著，虹膜橙黄色，翼宽爆发力强。广泛栖息山地、崖壁、荒野与林地。</p>
+                <p>主食野兔、啮齿动物，也捕食鸟类、爬行类；繁殖期3-5月，多在岩壁凹洞筑巢，每窝产卵2-5枚。栖息地破碎化与人为干扰致使野外种群数量持续减少。</p>
+            </div>
+        </div>
+
+        <!-- 灰林鸮 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 灰林鸮（<em>Strix aluco</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20104041.png" alt="灰林鸮"></div></div>
+            <div class="text-wrap">
+                <p>灰林鸮体长约37-43cm，全身灰色带褐色纵纹，面盘灰色，虹膜黑色。广泛分布于欧亚大陆的林地、公园和花园。以啮齿类为主食，也吃小鸟和昆虫。</p>
+                <p>繁殖期3-5月，营巢于树洞或旧鸦巢，每窝产2-4枚卵。叫声为重复的“hoo-hoo”，在林间夜间常闻。适应力强，城市绿化带也能生存。</p>
+            </div>
+        </div>
+        <!-- 长尾林鸮 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 长尾林鸮（<em>Strix uralensis</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20104209.png" alt="长尾林鸮"></div></div>
+            <div class="text-wrap">
+                <p>长尾林鸮体型较大，约50-60cm，全身灰褐色，具深色纵纹，虹膜暗色，尾羽较长。分布于欧亚大陆北部针阔混交林。</p>
+                <p>以鼠类、小型哺乳类为食，也捕食野兔。繁殖期4-6月，利用树洞或旧巢，每窝产3-4枚卵。因老龄林减少，部分地区种群下降。</p>
+            </div>
+        </div>
+        <!-- 乌林鸮 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 乌林鸮（<em>Strix nebulosa</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20104435.png" alt="乌林鸮"></div></div>
+            <div class="text-wrap">
+                <p>乌林鸮是鸱鸮属中体型最大的种类之一，体长约61-84cm，面盘巨大，全身灰褐色，虹膜黄色。分布于北美和欧亚大陆北部针叶林。</p>
+                <p>以鼠类为主食，常停栖于林缘，视野开阔。繁殖期营巢于大树顶部，每窝产3-5枚卵。因栖息地破坏，局部濒危。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20104634.png" alt="鸱鸮属保护"></div></div>
+            <div class="text-wrap">
+                <p>鸱鸮属对控制森林鼠害至关重要，保护老龄林、保留树洞和枯立木是保护关键。公众可通过安装巢箱、减少农药使用等方式帮助它们。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

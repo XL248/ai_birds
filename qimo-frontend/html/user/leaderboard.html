@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>排行榜 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../js/main.js" defer></script>
+    <script src="../../config/api-base.js"></script>
+    <script src="../../app/api.js"></script>
+    <script src="../../js/auth-modal.js" defer></script>
+    <style>
+        .lb-section { padding-top:120px; min-height:80vh; }
+        .lb-table-wrap { background:rgba(20,28,20,0.85); border:1px solid #4a6a3a; border-radius:24px; overflow:hidden; backdrop-filter:blur(6px); }
+        .lb-row { display:grid; grid-template-columns:60px 1fr 100px 100px; align-items:center; padding:14px 20px; border-bottom:1px solid #2a3a2a; transition:0.2s; }
+        .lb-row:hover { background:rgba(70,110,60,0.1); }
+        .lb-row.header { background:rgba(70,110,60,0.2); border-bottom:2px solid #5f8a4a; font-family:'Cinzel',serif; color:#b8d8a0; font-size:0.85rem; letter-spacing:1px; }
+        .lb-rank { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:bold; text-align:center; }
+        .lb-rank.gold { color:#f0c060; }
+        .lb-rank.silver { color:#b0bec0; }
+        .lb-rank.bronze { color:#c09060; }
+        .lb-rank.normal { color:#8aa87a; }
+        .lb-name { color:#d4d0c5; font-size:0.95rem; }
+        .lb-name .nick { color:#c8e0b0; }
+        .lb-name .uname { color:#8aa87a; font-size:0.8rem; margin-left:8px; }
+        .lb-stat { text-align:center; color:#9fc88a; font-size:0.9rem; }
+        .lb-stat i { margin-right:4px; }
+
+        @media (max-width:600px) {
+          .lb-row { grid-template-columns:40px 1fr 60px 60px; padding:10px 12px; font-size:0.8rem; }
+          .lb-rank { font-size:1rem; }
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif"><img src="../../image/top_yelu.gif" alt="动图"></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../index.html#hero">首页</a></li>
+                <li><a href="../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../index.html#gallery">观鸟日记</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="lb-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-trophy"></i> 观鸟排行榜 <i class="fas fa-trophy"></i></h2>
+            <div class="subtitle">谁是最勤奋的观鸟者？</div>
+        </div>
+        <div class="lb-table-wrap">
+            <div class="lb-row header">
+                <span>排名</span><span>观鸟者</span><span>打卡</span><span>收藏</span>
+            </div>
+            <div id="lb-body"><p style="text-align:center;color:#8aa87a;padding:40px;">加载中...</p></div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+<script>
+$(function(){loadLeaderboard();});
+function loadLeaderboard(){
+  QIMO_API.get('/api/social/leaderboard').then(d=>{
+    if(!d.success||!d.leaderboard.length){$('#lb-body').html('<p style="text-align:center;color:#8aa87a;padding:40px;">还没有数据</p>');return;}
+    $('#lb-body').html(d.leaderboard.map((u,i)=>{
+      const rank=i+1;
+      let cls='normal';
+      if(rank===1)cls='gold';else if(rank===2)cls='silver';else if(rank===3)cls='bronze';
+      const icon=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+      const name=$('<span>').text(u.nickname||u.username).html();
+      const uname=$('<span>').text(u.username).html();
+      return `<div class="lb-row">
+        <span class="lb-rank ${cls}">${icon}</span>
+        <span class="lb-name"><span class="nick">${name}</span><span class="uname">@${uname}</span></span>
+        <span class="lb-stat"><i class="fas fa-check-circle"></i>${u.checkin_count}</span>
+        <span class="lb-stat"><i class="fas fa-heart"></i>${u.fav_count}</span>
+      </div>`;
+    }).join(''));
+  }).catch(()=>$('#lb-body').html('<p style="text-align:center;color:#e8a0a0;padding:40px;">加载失败</p>'));
+}
+</script>
+</body>
+</html>

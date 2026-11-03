@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鸊鷉科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-water"></i> 鸊鷉科 · 潜水的精灵</h2>
+            <div class="subtitle">趾具瓣蹼，善于潜水捕鱼，是淡水生态系统中的独特成员</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20140725.png" alt="鸊鷉科典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鸊鷉科（Podicipedidae）</strong>包含约6属22种，全球分布，但以美洲种类最多。体型中小，腿短位于身体后部，适应水中生活。趾具瓣状蹼，游泳和潜水能力极强。羽毛致密，善于在胸前孵卵。</p>
+                <p>以鱼类、虾类、水生昆虫为食，常潜入水中捕食。繁殖期有复杂的求偶炫耀行为，如“舞蹈”和鸣叫。巢为浮巢，附着于水生植物上。鸊鷉科对水质要求较高，是湿地生态健康的指示生物。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 小鸊鷉 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 小鸊鷉（<em>Tachybaptus ruficollis</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20140844.png" alt="小鸊鷉"></div></div>
+            <div class="text-wrap">
+                <p>小鸊鷉体长约25-30cm，是体型最小的鸊鷉。繁殖羽头部和颈部栗色，下颌白色，非繁殖羽灰褐色。广泛分布于欧亚大陆、非洲的淡水水域，包括湖泊、池塘和水库。</p>
+                <p>常单独或成对活动，善潜水，能长时间在水下追逐鱼虾。筑浮巢于水生植物丛中，每窝产4-6枚卵，孵化期约20天。适应力强，城市公园湖泊也常见其身影。</p>
+            </div>
+        </div>
+        <!-- 凤头鸊鷉 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 凤头鸊鷉（<em>Podiceps cristatus</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20140932.png" alt="凤头鸊鷉"></div></div>
+            <div class="text-wrap">
+                <p>凤头鸊鷉体型较大，约45-55cm。繁殖羽头顶具黑色冠羽，颈侧具橙棕色饰羽，极为华丽。分布于欧亚大陆、非洲、澳洲的湖泊和水库，尤其喜欢开阔水面。</p>
+                <p>善潜水捕鱼，也吃两栖类和昆虫。求偶时，雌雄对游，并相互梳理羽毛，配合默契。筑浮巢于开阔水面，每窝产3-5枚卵。在中国北方为夏候鸟，南方越冬，常见于大型湿地。</p>
+            </div>
+        </div>
+        <!-- 角鸊鷉 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 角鸊鷉（<em>Podiceps auritus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141033.png" alt="角鸊鷉"></div></div>
+            <div class="text-wrap">
+                <p>角鸊鷉体长约30-40cm，繁殖羽头部具黄色耳簇，颈侧栗色，黑色冠羽，非繁殖羽则变为灰褐色。分布于北美、欧亚大陆的湖泊和溪流，偏好清澈水质。</p>
+                <p>食性以鱼虾为主，繁殖期在5-7月，筑浮巢于芦苇丛中。在中国为稀有冬候鸟，需加强湿地保护。因栖息地破坏，种群数量呈下降趋势。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141154.png" alt="鸊鷉科保护"></div></div>
+            <div class="text-wrap">
+                <p>鸊鷉科鸟类对水质变化敏感，是湿地生态健康的指示物种。保护水体清洁、恢复水生植被、减少人类干扰是保护它们的关键。公众可通过参与湿地清洁、支持湿地保护项目贡献力量。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 物种评估。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

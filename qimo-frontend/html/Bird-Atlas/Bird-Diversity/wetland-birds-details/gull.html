@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鸥科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-feather"></i> 鸥科 · 海天之间的飞翔者</h2>
+            <div class="subtitle">翼长善飞，适应性极强，广布于沿海、内陆水域，甚至城市环境</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20143750.png" alt="鸥科典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鸥科（Laridae）</strong>包含鸥、燕鸥、剪嘴鸥等约22属100种，全球分布。体型中到大型，翼长，尾短，喙强健，脚具蹼。羽毛多为灰、白、黑，繁殖期头部变暗。</p>
+                <p>食性杂，以鱼、虾、昆虫、腐肉、甚至人类垃圾为食。常群集活动，飞行能力强，迁徙距离远。繁殖期集群营巢于岛屿、沙滩或屋顶，是沿海生态系统的重要成员。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 红嘴鸥 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 红嘴鸥（<em>Chroicocephalus ridibundus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20143906.png" alt="红嘴鸥"></div></div>
+            <div class="text-wrap">
+                <p>红嘴鸥体长约35-40cm，繁殖羽头部深棕色，嘴红色，翼尖黑色。广泛分布于欧亚大陆的湖泊、河流及沿海，在中国冬季可见于各地大型水体。</p>
+                <p>群栖性，以鱼虾、昆虫为食，也吃城市丢弃食物。在中国，冬季大量聚集于昆明滇池、新疆乌伦古湖，成为著名景观。它们不畏人，常接受投喂，但也可能影响健康。</p>
+            </div>
+        </div>
+        <!-- 银鸥 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 银鸥（<em>Larus argentatus</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20144026.png" alt="银鸥"></div></div>
+            <div class="text-wrap">
+                <p>银鸥体长约55-65cm，背灰色，翅尖黑色，腿粉红色。分布于北大西洋、北太平洋沿岸，在中国沿海越冬，常见于港口和海滩。</p>
+                <p>食性广泛，以鱼、贝类、腐肉及垃圾为食，有时也掠夺其他鸟类的食物。繁殖于沿海岛屿，每窝产2-3枚卵。因适应城市，数量稳定。</p>
+            </div>
+        </div>
+        <!-- 黑尾鸥 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 黑尾鸥（<em>Larus crassirostris</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20144151.png" alt="黑尾鸥"></div></div>
+            <div class="text-wrap">
+                <p>黑尾鸥体长约45-50cm，背灰色，尾黑色，喙黄红色。分布于东亚沿海，中国东部沿海常见繁殖鸟，如山东、浙江等地。</p>
+                <p>以鱼类、软体动物为食，也食动物尸体。繁殖于岛屿或海岸岩壁，每窝产2-3枚卵。因旅游开发，部分繁殖地受到干扰。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20144331.png" alt="鸥科与人类"></div></div>
+            <div class="text-wrap">
+                <p>鸥科鸟类适应城市环境，但过度依赖人类食物可能影响健康，并导致生态失衡。保护自然湿地、减少海洋塑料污染、规范投喂行为对鸥类生存至关重要。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 物种评估。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

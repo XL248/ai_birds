@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>个人中心 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../js/main.js" defer></script>
+    <script src="../../config/api-base.js"></script>
+    <script src="../../app/api.js"></script>
+    <script src="../../js/auth-modal.js" defer></script>
+    <style>
+        .profile-section { padding-top: 120px; min-height: 80vh; }
+        .profile-grid { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: start; }
+
+        .profile-card, .form-card {
+            background: rgba(20, 28, 20, 0.85);
+            border: 1px solid #4a6a3a;
+            border-radius: 24px;
+            padding: 28px;
+            backdrop-filter: blur(6px);
+            transition: border-color 0.2s;
+        }
+        .profile-card:hover, .form-card:hover { border-color: #6f9a5f; }
+
+        .profile-avatar-wrap {
+            width: 96px; height: 96px; border-radius: 50%;
+            background: #2a3a2a; border: 2px solid #6f9a5f;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px; overflow: hidden;
+            font-size: 2.5rem; color: #9bc78a;
+        }
+        .profile-avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+        .profile-card h3, .form-card h3 {
+            font-family: 'Cinzel', serif;
+            color: #b8d8a0; text-align: center;
+            font-size: 1.3rem; margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .profile-card .username { text-align: center; color: #9fc88a; font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 12px; }
+        .profile-card .bio { color: #8aa87a; font-size: 0.9rem; text-align: center; line-height: 1.6; min-height: 40px; font-style: italic; }
+        .profile-card .meta { color: #6a8a5a; font-size: 0.8rem; text-align: center; margin-top: 16px; border-top: 1px dashed #3a5a2a; padding-top: 12px; }
+        .profile-card .meta i { margin-right: 4px; }
+        .profile-card .btn-edit { display: block; margin: 16px auto 0; text-align: center; }
+
+        .form-card label { display: block; color: #9fc88a; font-size: 0.85rem; font-family: 'Cinzel', serif; margin: 14px 0 6px; letter-spacing: 1px; }
+        .form-card input, .form-card textarea {
+            background: #141c14; border: 1px solid #4a6a3a; border-radius: 16px;
+            color: #d4d0c5; font-family: 'Inter', sans-serif; font-size: 0.95rem;
+            padding: 10px 16px; width: 100%; transition: 0.2s; resize: vertical;
+        }
+        .form-card input:focus, .form-card textarea:focus { border-color: #8fc078; box-shadow: 0 0 6px rgba(100,160,80,0.3); outline: none; }
+        .form-card textarea { min-height: 80px; }
+
+        .form-card .btn-row { display: flex; gap: 12px; margin-top: 20px; }
+        .btn-save, .btn-cancel {
+            flex: 1; border-radius: 60px; padding: 10px;
+            font-family: 'Cinzel', serif; font-size: 0.9rem;
+            letter-spacing: 1px; cursor: pointer; transition: 0.2s;
+            text-align: center; border: 1px solid #6f9a5f;
+        }
+        .btn-save { background: rgba(70,110,60,0.3); color: #c8e0b0; }
+        .btn-save:hover { background: #3f6a30; border-color: #8fc078; }
+        .btn-cancel { background: transparent; color: #8aa87a; }
+        .btn-cancel:hover { color: #d4d0c5; border-color: #7a6a4a; }
+
+        .form-card .status-msg { text-align: center; margin-top: 8px; font-size: 0.85rem; }
+        .form-card .status-msg.success { color: #9fc88a; }
+        .form-card .status-msg.error { color: #e8a0a0; }
+
+        @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif"><img src="../../image/top_yelu.gif" alt="动图"></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../index.html#hero">首页</a></li>
+                <li><a href="../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../index.html#gallery">观鸟日记</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="profile-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-user-feather"></i> 个人中心 <i class="fas fa-user-feather"></i></h2>
+            <div class="subtitle">管理你的观鸟档案与账户信息</div>
+        </div>
+
+        <div class="profile-grid">
+            <!-- 左侧资料卡 -->
+            <div class="profile-card" id="profile-card">
+                <div class="profile-avatar-wrap" id="avatar-wrap">
+                    <i class="fas fa-feather-alt"></i>
+                </div>
+                <h3 id="display-name">---</h3>
+                <div class="username" id="display-username">@---</div>
+                <div class="bio" id="display-bio">这个人还没有写简介……</div>
+                <div class="meta">
+                    <i class="fas fa-calendar-alt"></i> <span id="display-date">---</span> 加入
+                </div>
+                <a class="bird-detail-link btn-edit" href="#" id="btn-edit-profile">编辑资料</a>
+            </div>
+
+            <!-- 右侧表单区 -->
+            <div class="form-card" id="edit-profile-form" style="display:none;">
+                <h3><i class="fas fa-pen"></i> 编辑资料</h3>
+                <label for="edit-nickname">昵 称</label>
+                <input id="edit-nickname" type="text" placeholder="给自己取个自然名字吧" maxlength="32" />
+                <label for="edit-bio">个人简介</label>
+                <textarea id="edit-bio" placeholder="写一句关于你与鸟类的话……" maxlength="500"></textarea>
+                <div class="btn-row">
+                    <button class="btn-cancel" id="btn-cancel-profile">取 消</button>
+                    <button class="btn-save" id="btn-save-profile">保 存</button>
+                </div>
+                <div class="status-msg" id="profile-status"></div>
+            </div>
+
+            <!-- 我的收藏 & 打卡 -->
+            <div class="form-card">
+                <h3><i class="fas fa-heart"></i> 我的收藏</h3>
+                <div id="fav-list" style="color:#8aa87a;font-size:0.9rem;min-height:30px;">加载中...</div>
+                <h3 style="margin-top:20px;"><i class="fas fa-check-circle"></i> 我的打卡</h3>
+                <div id="checkin-list" style="color:#8aa87a;font-size:0.9rem;min-height:30px;">加载中...</div>
+                <h3 style="margin-top:20px;"><i class="fas fa-medal"></i> 成就徽章</h3>
+                <div id="badge-list" style="color:#8aa87a;font-size:0.9rem;min-height:30px;display:flex;flex-wrap:wrap;gap:8px;">加载中...</div>
+            </div>
+
+            <!-- 修改密码 -->
+            <div class="form-card">
+                <h3><i class="fas fa-lock"></i> 修改密码</h3>
+                <label for="pwd-old">旧密码</label>
+                <input id="pwd-old" type="password" placeholder="输入当前密码" />
+                <label for="pwd-new">新密码</label>
+                <input id="pwd-new" type="password" placeholder="至少6个字符" />
+                <label for="pwd-confirm">确认新密码</label>
+                <input id="pwd-confirm" type="password" placeholder="再次输入新密码" />
+                <div class="btn-row">
+                    <button class="btn-save" id="btn-save-password">更新密码</button>
+                </div>
+                <div class="status-msg" id="pwd-status"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+
+<script>
+$(function () {
+  loadProfile();
+  loadFavorites();
+  loadCheckins();
+  loadBadges();
+
+  // 编辑按钮
+  $('#btn-edit-profile').on('click', function (e) {
+    e.preventDefault();
+    $('#edit-profile-form').slideDown(300);
+    $(this).hide();
+  });
+  $('#btn-cancel-profile').on('click', function () {
+    $('#edit-profile-form').slideUp(300);
+    $('#btn-edit-profile').show();
+    $('#profile-status').text('');
+  });
+
+  // 保存资料
+  $('#btn-save-profile').on('click', function () {
+    const nickname = $('#edit-nickname').val().trim();
+    const bio = $('#edit-bio').val().trim();
+    const $status = $('#profile-status');
+
+    QIMO_API.put('/api/user/profile', { nickname, bio })
+      .then(data => {
+        $status.text(data.message).attr('class', 'status-msg ' + (data.success ? 'success' : 'error'));
+        if (data.success) { loadProfile(); $('#edit-profile-form').slideUp(300); $('#btn-edit-profile').show(); }
+      });
+  });
+
+  // 修改密码
+  $('#btn-save-password').on('click', function () {
+    const oldPassword = $('#pwd-old').val();
+    const newPassword = $('#pwd-new').val();
+    const confirm = $('#pwd-confirm').val();
+    const $status = $('#pwd-status');
+
+    if (!oldPassword || !newPassword) return $status.text('请填写所有字段').attr('class', 'status-msg error');
+    if (newPassword.length < 6) return $status.text('新密码至少6个字符').attr('class', 'status-msg error');
+    if (newPassword !== confirm) return $status.text('两次新密码不一致').attr('class', 'status-msg error');
+
+    QIMO_API.put('/api/user/password', { oldPassword, newPassword })
+      .then(data => {
+        $status.text(data.message).attr('class', 'status-msg ' + (data.success ? 'success' : 'error'));
+        if (data.success) { $('#pwd-old, #pwd-new, #pwd-confirm').val(''); }
+      });
+  });
+});
+
+function loadProfile() {
+  QIMO_API.get('/api/user/profile')
+    .then(data => {
+      if (!data || !data.success) return;
+      const p = data.profile;
+      $('#display-name').text(p.nickname || '观鸟者');
+      $('#display-username').text('@' + p.username);
+      $('#display-bio').text(p.bio || '这个人还没有写简介……');
+      $('#display-date').text(new Date(p.created_at).toLocaleDateString('zh-CN'));
+      $('#edit-nickname').val(p.nickname || '');
+      $('#edit-bio').val(p.bio || '');
+    })
+    .catch(err => {
+      // 未登录就回首页，其余错误（后端没起、CORS 被拦）明确报出来
+      if (err && err.unauthorized) { location.href = '../../index.html'; return; }
+      $('#display-bio').text(err && err.message ? err.message : '资料加载失败');
+    });
+}
+
+function loadFavorites() {
+  QIMO_API.get('/api/social/favorites')
+    .then(d => {
+      if (!d.success || !d.birds.length) {
+        $('#fav-list').html('还没有收藏任何鸟类');
+        return;
+      }
+      $('#fav-list').html(d.birds.map(b => {
+        const name = $('<span>').text(b.bird_name).html();
+        return '<span style="display:inline-block;background:rgba(70,110,60,0.2);border:1px solid #5f8a4a;border-radius:20px;padding:4px 12px;margin:4px;font-size:0.85rem;color:#c8e0b0;">🐦 ' + name + '</span>';
+      }).join(''));
+    })
+    .catch(() => $('#fav-list').html('加载失败'));
+}
+
+function loadCheckins() {
+  QIMO_API.get('/api/social/checkins')
+    .then(d => {
+      if (!d.success || !d.birds.length) {
+        $('#checkin-list').html('还没有打卡记录');
+        return;
+      }
+      $('#checkin-list').html(
+        '<p style="color:#9fc88a;margin-bottom:8px;">共打卡 <b>' + d.total + '</b> 种鸟</p>' +
+        d.birds.map(b => {
+          const name = $('<span>').text(b.bird_name).html();
+          return '<span style="display:inline-block;background:rgba(70,110,60,0.2);border:1px solid #5f8a4a;border-radius:20px;padding:4px 12px;margin:4px;font-size:0.85rem;color:#c8e0b0;">✅ ' + name + '</span>';
+        }).join(''));
+    })
+    .catch(() => $('#checkin-list').html('加载失败'));
+}
+
+function loadBadges() {
+  QIMO_API.get('/api/social/achievements')
+    .then(d => {
+      if (!d.success || !d.badges.length) {
+        $('#badge-list').html('还没有获得徽章，去打卡吧~');
+        return;
+      }
+      $('#badge-list').html(d.badges.map(b => {
+        const name = $('<span>').text(b.name).html();
+        return '<span style="display:inline-block;background:rgba(90,120,50,0.3);border:1px solid #8ab870;border-radius:24px;padding:6px 14px;font-size:0.85rem;color:#d4e8c0;text-align:center;" title="'+name+'">'+b.icon+' '+name+'</span>';
+      }).join(''));
+    })
+    .catch(() => $('#badge-list').html('加载失败'));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>夜鹭亚科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder {
+            min-height: 220px;
+            background: #1a221a;
+            border-radius: 24px;
+            border: 1px solid #6f8f5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8fb07a;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p {
+            color: #d4d0c5;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .eco-block .text-wrap .source {
+            font-size: 0.9rem;
+            color: #9fc88a;
+        }
+        .eco-block .text-wrap .source a {
+            color: #b8d8a0;
+            text-decoration: underline;
+            transition: 0.2s;
+        }
+        .eco-block .text-wrap .source a:hover {
+            color: #e0f0d0;
+            text-shadow: 0 0 6px #6f9a5f;
+        }
+        @media (max-width: 768px) {
+            .eco-block, .eco-block.reverse { flex-direction: column; }
+            .eco-block .img-wrap { width: 100%; }
+        }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #b3d8a0;
+            border-bottom: 2px solid #6f9a5f;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        .page-title .subtitle { margin-top: 8px; }
+        /* 种名小标题 */
+        .species-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #c8e0b0;
+            margin: 30px 0 16px;
+            border-left: 4px solid #6f9a5f;
+            padding-left: 16px;
+        }
+
+        /* 仅夜鹭图片容器专属样式，其他.img-placeholder不受影响 */
+        .night-heron-img-box {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 24px !important;
+            padding: 20px !important;
+        }
+        /* 每组图片外框（gif一组、静态图一组） */
+        .night-heron-img-box .img-group {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #8fb07a;
+            border-radius: 16px;
+            background: rgba(30, 42, 30, 0.4);
+            overflow: hidden; /* 超出分组边框直接裁剪 */
+        }
+        /* 组内图片统一样式 */
+        .night-heron-img-box .img-group img {
+            flex: 1;
+            height: 160px;
+            object-fit: cover; /* 比例不变，超出部分裁剪 */
+            object-position: center;
+            border-radius: 12px;
+            display: block;
+        }
+        /* 手机端适配，组内图片竖向排列 */
+        @media (max-width: 768px) {
+            .night-heron-img-box .img-group {
+                flex-direction: column;
+            }
+            .night-heron-img-box .img-group img {
+                height: 200px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-crow"></i> 夜鹭亚科 · 黄昏的猎手</h2>
+            <div class="subtitle">夜行性涉禽，以独特的觅食策略和优雅姿态，成为湿地生态中的重要成员</div>
+        </div>
+
+        <!-- ========== 总括 ========== -->
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../../image/yeluyake.jpeg" alt="夜鹭亚科">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p><strong>夜鹭亚科（Nycticoracinae）</strong>
+                    是鹭科下特征独特的亚科，
+                    包含夜鹭属、海南鳽属等类群，
+                    全球现存大约十个有效物种。
+                    广泛分布于温带与热带区域，
+                    欧亚大陆、非洲、美洲、东南亚，
+                    各地都能找到稳定的野生种群。
+                    它们高度依赖各类湿地环境，
+                    湖泊、城市池塘、河流浅滩，
+                    水田沼泽、沿海红树林，
+                    都是它们主要的栖息场所。
+                    和日间活动的白鹭、苍鹭不同，
+                    夜鹭亚科鸟类多为晨昏夜行，
+                    正午会成群躲藏在树丛休憩。</p>
+
+                <p>该亚科鸟类体型多为中等尺寸，
+                    整体体态短粗紧凑，辨识度高。
+                    腿部偏短，适合浅滩长久站立，
+                    脖颈粗短，捕猎时可瞬间弹射。
+                    喙部粗壮尖锐，带有细微锯齿，
+                    能够牢牢锁住滑溜的水生猎物。
+                    成鸟羽色搭配简单却极具特点，
+                    躯体灰白，头顶覆盖墨黑冠羽，
+                    繁殖期会生长细长白色饰羽。
+                    亚成鸟布满深浅交错褐纹，
+                    依靠保护色融入枯枝泥土环境。
+                    它们属于典型的伏击型捕食者，
+                    会长时间静立栏杆、水边石块，
+                    等待鱼虾、蝌蚪靠近再突袭。</p>
+
+                <p>夜鹭亚科普遍拥有集群繁殖习性，
+                    每年春夏时节进入繁殖周期。
+                    大量个体聚集在临水高大乔木，
+                    利用干枯树枝搭建简易巢穴，
+                    同一棵树上可聚集数十个鸟巢。
+                    雌雄亲鸟会轮流完成孵卵工作，
+                    单窝产卵数量维持三至五枚，
+                    卵壳呈现柔和淡雅的淡蓝色。
+                    完整孵化周期约二十一到二十五天，
+                    雏鸟属于无法自理的晚成鸟类，
+                    破壳后全身仅覆盖一层绒羽，
+                    需要双亲持续投喂近一个月，
+                    羽翼完全丰满才可下水独立生存。
+                    城市人工湿地能见到稳定种群，
+                    说明它们耐受轻度人类干扰。</p>
+
+                <p>普通夜鹭整体种群数量尚稳定，
+                    但亚科内珍稀物种生存形势严峻。
+                    例如珍稀鸟类海南鳽，
+                    栖息地碎片化、人为频繁惊扰，
+                    野外可观测繁殖个体持续减少，
+                    是我国重点保护野生鸟类。
+                    全球范围内湿地填埋开发，
+                    水体农药残留造成环境污染，
+                    人类活动打扰鸟类筑巢区域，
+                    持续压缩该类群的生存空间，
+                    不少区域本土种群逐年衰退。
+                    多个物种录入IUCN濒危红色名录，
+                    各国陆续出台湿地保护政策，
+                    修复原生水岸植被，禁止非法猎捕，
+                    以此保障野生种群长期存续。</p>
+
+                <p class="source">📖 参考：
+                    <a href="https://www.iucnredlist.org/" target="_blank">点此处</a>
+                    查看 IUCN 物种评估；
+                    <a href="https://www.birdlife.org/" target="_blank">点此处</a>
+                    查看国际鸟盟鸟类资料库。</p>
+            </div>
+        </div>
+
+        <!-- ========== 常见种介绍（逐一） ========== -->
+
+        <!-- 1. 夜鹭（Black-crowned Night Heron） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 夜鹭（<em>Nycticorax nycticorax</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap">
+                <!-- 增加专属类 night-heron-img-box，仅用于单独写样式 -->
+                <div class="img-placeholder night-heron-img-box">
+                    <!-- 第一框：两张gif一组 -->
+                    <div class="img-group gif-group">
+                        <img src="../../../../image/yelu.gif" alt="夜鹭成鸟">
+                        <img src="../../../../image/yeshifu.gif" alt="夜鹭成鸟">
+                    </div>
+                    <!-- 第二框：两张静态图一组 -->
+                    <div class="img-group static-group">
+                        <img src="../../../../image/yeshifu1.jpg" alt="夜鹭成鸟">
+                        <img src="../../../../image/yeshifu2.jpeg" alt="夜鹭成鸟">
+                    </div>
+                    <div class="img-group static-group">
+                        <img src="../../../../image/ye1.gif" alt="夜鹭成鸟">
+                        <img src="../../../../image/ye2.gif" alt="夜鹭成鸟">
+                    </div>
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>夜鹭是分布最广的夜鹭亚科物种，繁殖于欧亚大陆、非洲、美洲及东南亚，冬季迁至热带地区。成鸟头顶及背部黑色，颈及胸灰色，腹部白色，眼周红色，虹膜黄色，具两根白色长冠羽。亚成鸟则为褐色纵纹，与成鸟迥异。</p>
+                <p>夜鹭是典型的晨昏性觅食者，黎明和黄昏时分活动频繁。它们常站在水边耐心等待，或缓慢行走，用锋利的喙快速刺捕鱼类、青蛙和水生昆虫。在城市公园的池塘边也常见其身影，适应力较强。</p>
+                <p>繁殖期（3-7月）集群营巢于树上，每窝产3-5枚淡蓝色卵，孵化期约21-24天。雏鸟为晚成性，需双亲喂食一个月左右才可独立。全球种群数量相对稳定，但局部地区因湿地开发而减少。</p>
+                <p>值得说明的是，在观鸟圈中，夜鹭因其独特(?猥琐?)的外貌和诙谐幽默的行为(呱！不要这么说咱，呱！)而受到观鸟者的喜爱，被观鸟人称为"夜师傅"</p>
+            </div>
+        </div>
+
+        <!-- 2. 黄斑夜鹭（Yellow-crowned Night Heron） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 黄冠夜鹭（<em>Nyctanassa violacea</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                <img src="../../../../image/屏幕截图%202026-07-01%20114845.png" alt="黄冠夜鹭">
+            </div>
+            </div>
+            <div class="text-wrap">
+                <p>黄冠夜鹭主要分布于美洲的热带及亚热带沿海地区，从美国东南部至阿根廷北部。成鸟体长约55-70cm，具灰色身体、黑色头部、白色脸颊及醒目的黄色眼周斑块，因而得名。繁殖期头顶长出两根白色长饰羽。</p>
+                <p>其食性较特殊，偏好螃蟹、龙虾等甲壳类动物，也捕食小鱼、昆虫。常在海滩、红树林和沼泽边缘活动，行动较为缓慢，但捕食时反应敏捷。</p>
+                <p>由于沿海开发破坏其栖息地，部分地区种群有所减少，但在美国仍属常见物种。它们常在红树林或高大树木上营巢，每窝产2-4枚卵。</p>
+            </div>
+        </div>
+
+        <!-- 3. 栗夜鹭（Rufous Night Heron） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 栗夜鹭（<em>Nycticorax caledonicus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                <img src="../../../../image/屏幕截图%202026-07-01%20115059.png" alt="栗夜鹭">
+            </div>
+            </div>
+            <div class="text-wrap">
+                <p>栗夜鹭分布于澳大利亚、新几内亚、印度尼西亚及太平洋岛屿。成鸟具栗色头部、颈部和胸部，背部深灰色，腹部白色，虹膜黄色。其体型与夜鹭相近，但色彩更为鲜艳。</p>
+                <p>主要栖息于淡水湿地、湖泊、河流沿岸，也出现于红树林和农田。以鱼类、蛙类、昆虫及小型爬行动物为食。常在水边浅滩处觅食。</p>
+                <p>繁殖期在雨季（9-3月），集群营巢于树上或灌丛，每窝产3-5枚卵。全球种群数量尚可，但在部分地区因栖息地丧失而下降。</p>
+            </div>
+        </div>
+
+        <!-- 4. 海南鳽（White-eared Night Heron） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 海南鳽（<em>Gorsachius magnificus</em>）—— 极危物种</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                <img src="../../../../image/屏幕截图%202026-07-01%20115156.png" alt="海南鳽">
+            </div>
+            </div>
+            <div class="text-wrap">
+                <p>海南鳽是中国特有鸟类，被列为极危（CR）物种，全球种群数量估计不足1000只。分布于中国南部及越南北部的热带山地森林及溪流沿岸。成鸟体长约50-60cm，具褐色和灰色羽毛，眼后具白色耳羽，虹膜黄色。</p>
+                <p>它们极罕见，多夜行性，白天隐居于茂密林间，极少被观察。以小鱼、虾、蟹和昆虫为食，常在水流湍急的溪流边活动。繁殖期不集群，单独营巢于树上，每窝产2-4枚卵。</p>
+                <p>主要威胁来自森林砍伐导致栖息地破坏，以及非法狩猎。中国已将其列为国家一级保护动物，并在云南、广西等地建立了自然保护区以加强保护。</p>
+                <p class="source">📖 参考文献：<a href="https://www.iucnredlist.org/species/22697252/132069296" target="_blank">点此处</a> 查看 IUCN 海南鳽评估；<a href="http://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局保护动态。</p>
+            </div>
+        </div>
+
+        <!-- 5. 棕夜鹭（Nankeen Night Heron，即栗夜鹭的亚种，但不同种） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 棕夜鹭（<em>Nycticorax nycticorax</em> 的亚洲亚种？此处略）</div>
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                <img src="../../../../image/屏幕截图%202026-07-01%20115256.png" alt="棕夜鹭幼鸟">
+            </div>
+            </div>
+            <div class="text-wrap">
+                <p>（补充说明：棕夜鹭通常指栗夜鹭的澳洲亚种，但因分类存疑，此处不再赘述。以上三种为夜鹭亚科最具代表性的物种。）</p>
+                <p>夜鹭亚科各物种普遍面临栖息地丧失和环境污染的威胁，保护湿地生态系统对它们至关重要。通过监测种群动态、加强保护区管理、恢复湿地植被，可以有效维护这些神秘鸟类的未来。</p>
+            </div>
+        </div>
+
+        <!-- 结尾 -->
+        <div class="eco-block reverse">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                <img src="../../../../image/屏幕截图%202026-07-01%20115408.png" alt="夜鹭亚科保护宣传">
+            </div>
+            </div>
+            <div class="text-wrap">
+                <p>夜鹭亚科是湿地生物多样性的重要组成部分，它们作为捕食者控制着水生生物的数量，同时其巢穴也为其他动物提供栖息环境。公众可以通过参与湿地保护志愿者活动、减少塑料污染、支持鸟类保护组织等方式，共同守护这些夜幕下的精灵。</p>
+                <p class="source">📖 了解更多：<a href="https://www.ramsar.org/" target="_blank">点此处</a> 查看拉姆萨尔湿地公约。</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+
+</body>
+</html>

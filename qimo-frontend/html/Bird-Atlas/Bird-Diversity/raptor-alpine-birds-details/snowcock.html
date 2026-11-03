@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>雪鸡属 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../raptor-alpine-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-dove"></i> 雪鸡属 · 高山之巅的隐士</h2>
+            <div class="subtitle">栖息于高海拔草甸和裸岩地带，耐寒性极强，是青藏高原的代表性鸟类</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../../image/0007.jpeg" alt="雪鸡属典型生境">
+            </div></div>
+            <div class="text-wrap">
+                <p><strong>雪鸡属（Tetraogallus）</strong>隶属于雉科，全球约5种，主要分布于中亚高山地带，中国有3种。体型较大，约50-70cm，羽毛以灰色、褐色为主，具白色翼斑和尾羽尖端，与裸岩环境融为一体。它们适应高寒缺氧环境，善于奔走，飞行能力较弱，常在海拔3000-5500m的草甸、流石滩活动。</p>
+                <p>以植物根茎、种子、苔藓为食，也捕食昆虫。繁殖期营巢于地面岩石缝中，每窝产6-10枚卵。由于放牧和栖息地退化，部分种群数量下降，被列为近危物种。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 喜马拉雅雪鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 喜马拉雅雪鸡（<em>Tetraogallus himalayensis</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../../image/0011.jpeg" alt="喜马拉雅雪鸡">
+            </div></div>
+            <div class="text-wrap">
+                <p>喜马拉雅雪鸡体长约50-60cm，上体灰褐色，具白色翼斑，喉部白色，尾羽尖端白色。分布于喜马拉雅山脉及我国青藏高原南缘。</p>
+                <p>栖息于高山草甸和裸岩，以草籽、浆果为食，冬季下迁至较低海拔。繁殖期5-7月，筑巢于岩缝中，每窝产6-8枚卵。因其分布区偏远，种群相对稳定。</p>
+            </div>
+        </div>
+        <!-- 藏雪鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 藏雪鸡（<em>Tetraogallus tibetanus</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../../image/0008.jpeg" alt="藏雪鸡">
+            </div></div>
+            <div class="text-wrap">
+                <p>藏雪鸡体长约55-65cm，全身灰褐色，具白色翼斑，尾羽黑色尖端白色，喉部白色。分布于青藏高原及帕米尔高原，为中国特有种。</p>
+                <p>适应高寒荒漠，常集群活动，以植物根、种子为食。繁殖期6-8月，筑巢于地面。因高原开垦和过度放牧，局部地区减少。</p>
+            </div>
+        </div>
+        <!-- 阿尔泰雪鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 阿尔泰雪鸡（<em>Tetraogallus altaicus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../../image/0009.jpeg" alt="阿尔泰雪鸡">
+            </div></div>
+            <div class="text-wrap">
+                <p>阿尔泰雪鸡体长约50-55cm，上体灰色带细纹，翼斑白色，喉部淡黄色。分布于阿尔泰山脉及蒙古西部，中国仅见于新疆北部。</p>
+                <p>栖于高山草甸，以植物嫩芽和昆虫为食。繁殖期5-6月，每窝产8-10枚卵。因栖息地偏远，威胁较小，但全球种群有限。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../../image/0010.png" alt="雪鸡属保护">
+            </div></div>
+            <div class="text-wrap">
+                <p>雪鸡属是高山生态系统的重要成员，保护高寒草甸和减少过度放牧是保护关键。公众可通过支持高原生态保护项目、参与自然观察记录来帮助它们。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

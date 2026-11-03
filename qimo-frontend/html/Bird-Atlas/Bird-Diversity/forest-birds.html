@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>森林鸟类 · 羽翼守望者</title>
+    <!-- 继承主站全局样式 -->
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- 引入 jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- 继承主站交互脚本 -->
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+
+    <!-- 本页面专属样式（圆矩形卡片布局） -->
+    <style>
+        /* 继承 body 背景，无需额外修改 */
+        .forest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .bird-card {
+            background: rgba(20, 30, 20, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            border: 1px solid #5a7a4a;
+            padding: 20px 20px 18px;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        }
+        .bird-card:hover {
+            border-color: #8fc078;
+            transform: translateY(-5px);
+            background: #1e2a1e;
+        }
+
+        /* 头部：圆形图片 + 艺术字鸟名 */
+        .bird-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .bird-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #2a3a2a;
+            border: 2px solid #6f9a5f;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b8d8a0;
+            font-size: 1.8rem;
+            overflow: hidden;
+        }
+        /* 占位图标，后续可替换为 <img> */
+        .bird-avatar i {
+            font-size: 2.2rem;
+            color: #9fc88a;
+        }
+        .bird-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #d4e8c0;
+            text-shadow: 0 0 6px #4a7a3a;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        /* 简介区域 */
+        .bird-desc {
+            color: #b8c8a8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 10px 0 16px;
+            flex: 1;
+            padding: 6px 0;
+            border-top: 1px dashed #4a6a3a;
+            border-bottom: 1px dashed #4a6a3a;
+        }
+        .bird-desc .placeholder {
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* 了解详情按钮 */
+        .bird-detail-link {
+            align-self: flex-end;
+            font-family: 'Cinzel', serif;
+            color: #b8d8a0;
+            background: rgba(60, 100, 50, 0.25);
+            padding: 6px 18px;
+            border-radius: 40px;
+            border: 1px solid #6f9a5f;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .bird-detail-link:hover {
+            background: #3f6a30;
+            border-color: #8fc078;
+            color: #f0f8e8;
+            letter-spacing: 1px;
+        }
+
+        /* 页面标题微调 */
+        .section-header h2 {
+            border-bottom-color: #6f9a5f;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 600px) {
+            .bird-header {
+                flex-wrap: wrap;
+            }
+            .bird-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        /*圆框裁剪*//*圆框裁剪*//*圆框裁剪*//*圆框裁剪*//*圆框裁剪*/
+        .bird-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: #2a3a2a;
+            border: 2px solid #6f9a5f;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b8d8a0;
+            font-size: 1.8rem;
+            overflow: hidden;
+        }
+        .bird-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .bird-avatar i {
+            font-size: 2.2rem;
+            color: #9fc88a;
+        }
+        /*圆框裁剪*//*圆框裁剪*//*圆框裁剪*//*圆框裁剪*//*圆框裁剪*/
+
+    </style>
+</head>
+<body>
+
+<!-- ========== 顶部导航栏（完全复制自主页） ========== -->
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <i class="fas fa-feather-alt"></i> 羽翼守望者
+        </div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#bird-guide">返回</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- ========== 森林鸟类主内容 ========== -->
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-tree"></i> 森林鸟类 · 林间精灵 <i class="fas fa-tree"></i></h2>
+            <div class="subtitle">栖息于针叶林、阔叶林及混交林的鸟类，是森林生态健康的指示物种</div>
+        </div>
+
+        <!-- 卡片网格 -->
+        <div class="forest-grid">
+
+            <!-- 1. 啄木鸟属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/屏幕截图%202026-07-01%20100312.png" alt="啄木鸟">
+                    </div>
+                    <div class="bird-name">啄木鸟属</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">森林医生，以树干蛀虫为食，有效保护林木健康。</span>
+                </div>
+                <a href="forest-birds-details/woodpecker.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 2. 鸱鸮属（猫头鹰） -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/tx_chixiao.jpeg" alt="鸱鸮科">
+                    </div>
+                    <div class="bird-name">鸱鸮科</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">夜行林栖猛禽，依靠听觉捕猎鼠类，平衡林间小型动物数量。</span>
+                </div>
+                <a href="forest-birds-details/owl.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 3. 松鸡属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/屏幕截图%202026-07-01%20101332.png" alt="松鸡">
+                    </div>
+                    <div class="bird-name">松鸡属</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">北方针叶林专属鸟类，依靠树芽、浆果生存，求偶行为极具特色。</span>
+                </div>
+                <a href="forest-birds-details/grouse.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 4. 山雀属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/屏幕截图%202026-07-01%20101522.png" alt="山雀">
+                    </div>
+                    <div class="bird-name">山雀属</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">小型林间食虫鸟类，常年捕食害虫，冬季成群活动。</span>
+                </div>
+                <a href="forest-birds-details/tit.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 5. 鹰属（苍鹰） -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/屏幕截图%202026-07-01%20101817.png" alt="苍鹰">
+                    </div>
+                    <div class="bird-name">鹰属</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">林栖中型猛禽，林间灵活穿梭，控制小型鸟兽种群。</span>
+                </div>
+                <a href="forest-birds-details/hawk.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 6. 杜鹃属 -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/屏幕截图%202026-07-01%20102218.png" alt="杜鹃">
+                    </div>
+                    <div class="bird-name">杜鹃属</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">典型巢寄生鸟类，喜食毒毛虫，林间辨识度极高。</span>
+                </div>
+                <a href="forest-birds-details/cuckoo.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 7. 松鸦属（新增，保持结构完全一致） -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/tx_wuya.jpeg" alt="鸦科">
+                    </div>
+                    <div class="bird-name">鸦科</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">依靠坚果生存，储存种子，是森林天然播种者。</span>
+                </div>
+                <a href="forest-birds-details/jay.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+            <!-- 8. 柳莺属（新增，保持结构完全一致） -->
+            <div class="bird-card">
+                <div class="bird-header">
+                    <div class="bird-avatar">
+                        <img src="../../../image/屏幕截图%202026-07-01%20102218.png" alt="柳莺">
+                    </div>
+                    <div class="bird-name">柳莺属</div>
+                </div>
+                <div class="bird-desc">
+                    <span class="placeholder">微型迁徙林鸟，穿梭枝叶捕食各类小飞虫。</span>
+                </div>
+                <a href="forest-birds-details/warbler.html" class="bird-detail-link">了解详情 →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== 底部页脚（与主页一致） ========== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-feather-alt"></i> 羽翼守望者
+            </div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 所有内容均为占位设计，仅用于布局演示</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ========== 羽毛飘絮粒子容器（继承主站） ========== -->
+<div class="feather-particle-container"></div>
+
+</body>
+</html>

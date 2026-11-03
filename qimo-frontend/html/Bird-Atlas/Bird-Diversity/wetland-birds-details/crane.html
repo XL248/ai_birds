@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鹤科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-dove"></i> 鹤科 · 祥瑞之鸟</h2>
+            <div class="subtitle">大型涉禽，以优雅的体态和嘹亮的鸣声著称，是湿地保护的旗舰物种</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142113.png" alt="鹤科典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鹤科（Gruidae）</strong>包含约4属15种，分布于除南美和南极外的各大洲。体型高大（1-1.5m），颈腿长，喙强直。羽毛多为灰、白、黑，头部常具裸区。鹤类是著名的迁徙鸟类，繁殖于北方，越冬于南方。</p>
+                <p>以植物根茎、种子、昆虫、小型脊椎动物为食。繁殖期有优美的舞蹈求偶行为，配偶关系长期稳定。全球大部分鹤类受威胁，被列为保护物种，依赖湿地生态系统的健康。</p>
+                <p class="source">📖 参考：<a href="https://www.savingcranes.org/" target="_blank">点此处</a> 查看国际鹤类基金会。</p>
+            </div>
+        </div>
+        <!-- 丹顶鹤 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 丹顶鹤（<em>Grus japonensis</em>）—— 濒危（EN）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142237.png" alt="丹顶鹤"></div></div>
+            <div class="text-wrap">
+                <p>丹顶鹤是东亚文化中的“仙鹤”，体长约1.2-1.5m，全身白色，颈部黑色，头顶裸区红色。繁殖于中国东北、俄罗斯远东，越冬于中国东部和朝鲜半岛。</p>
+                <p>栖息于芦苇沼泽湿地，以鱼、螺、植物根茎为食。繁殖期4-5月，营巢于芦苇丛中，每窝产2枚卵。因栖息地丧失，野生种群约3000只，被列为濒危。中国已建立多个保护区保护其繁殖和越冬地。</p>
+            </div>
+        </div>
+        <!-- 白鹤 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 白鹤（<em>Grus leucogeranus</em>）—— 极危（CR）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142320.png" alt="白鹤"></div></div>
+            <div class="text-wrap">
+                <p>白鹤体长约1.4m，全身纯白，翅尖黑色，头面部裸区红色。繁殖于西伯利亚，越冬于中国长江中下游（主要鄱阳湖），全球种群约4000只。</p>
+                <p>以水生植物块根为食，也吃鱼类。迁徙途中依赖湿地停歇。保护鄱阳湖等越冬地是关键。中国已将其列为国家一级保护动物，并加强湿地巡护。</p>
+            </div>
+        </div>
+        <!-- 灰鹤 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 灰鹤（<em>Grus grus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142456.png" alt="灰鹤"></div></div>
+            <div class="text-wrap">
+                <p>灰鹤是分布最广的鹤类，欧亚大陆均有，体长约1.1-1.2m，全身灰色，头部有黑白色条纹，眼后具白色条纹。越冬于欧洲南部、非洲北部和亚洲南部。</p>
+                <p>杂食性，以植物、谷物、昆虫为食。繁殖期5-6月，筑巢于沼泽中。全球种群稳定，但局部受威胁，需关注农田和湿地保护。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20142615.png" alt="鹤类保护"></div></div>
+            <div class="text-wrap">
+                <p>鹤类保护需加强栖息地管理，建立湿地自然保护区，并开展国际合作保护迁徙路线。公众可通过支持保护组织、参与湿地监测、减少干扰等方式贡献力量。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 物种评估。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

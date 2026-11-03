@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>兀鹫属 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../raptor-alpine-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-dove"></i> 兀鹫属 · 高山的清道夫</h2>
+            <div class="subtitle">大型食腐猛禽，翼展宽大，在高空盘旋寻找动物尸体，是高山生态系统的清洁工</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0035.png" alt="兀鹫属典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>兀鹫属（Gyps）</strong>隶属于鹰科，全球约8种，主要分布于非洲和亚洲。体型巨大，体长80-100cm，翼展可达2.5m以上。羽毛以褐色、灰白为主，头部裸露，便于深入动物尸体取食。以腐肉为食，在生态系统中承担着重要清洁作用。</p>
+                <p>繁殖期营巢于悬崖上，每窝产1-2枚卵。由于农药污染、食物短缺和栖息地破坏，多种兀鹫数量急剧下降，部分已极度濒危。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 高山兀鹫 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 高山兀鹫（<em>Gyps himalayensis</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0036.png" alt="高山兀鹫"></div></div>
+            <div class="text-wrap">
+                <p>高山兀鹫是亚洲高山地区最大的食腐猛禽，体长约90-100cm，翼展约2.6-2.9m，上体淡褐色，下体淡色，颈羽形成“领圈”。分布于青藏高原及周边山地。</p>
+                <p>以动物尸体为食，利用上升气流盘旋，视力敏锐。繁殖期3-5月，营巢于悬崖，每窝产1枚卵。因兽药中毒，种群严重下降，被列为近危。</p>
+            </div>
+        </div>
+        <!-- 胡兀鹫（虽不同属，但常与兀鹫并称） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 胡兀鹫（<em>Gypaetus barbatus</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0037.png" alt="胡兀鹫"></div></div>
+            <div class="text-wrap">
+                <p>胡兀鹫体长约95-115cm，翼展约2.5-2.8m，头部具黑色胡须状羽毛，故名。分布于欧亚大陆山地，食腐也食骨头，能将骨头摔碎后吞食。</p>
+                <p>繁殖期4-6月，每窝产1-2枚卵。因中毒和栖息地破坏，全球种群稀少。</p>
+            </div>
+        </div>
+        <!-- 秃鹫（Aegypius monachus） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 秃鹫（<em>Aegypius monachus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0038.png" alt="秃鹫"></div></div>
+            <div class="text-wrap">
+                <p>秃鹫体长约90-110cm，翼展约2.5-2.9m，全身黑褐色，头部裸露皮肤呈蓝色。分布于欧亚大陆山区，以腐肉为主食。</p>
+                <p>繁殖期3-5月，营巢于树上。因农药中毒，种群急剧下降，在中国为罕见留鸟。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0039.png" alt="兀鹫属保护"></div></div>
+            <div class="text-wrap">
+                <p>兀鹫属是高山生态系统中不可或缺的清洁者，保护它们对于防止疾病传播、维持生态平衡意义重大。禁止使用对猛禽有害的兽药、保护高山草甸和悬崖是保护关键。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>羽翼守望者 · 鸟类与自然</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="js/main.js" defer></script>
+    <script src="config/api-base.js"></script>
+    <script src="app/api.js"></script>
+    <script src="js/auth-modal.js" defer></script>
+</head>
+<body>
+
+<!-- ========== 顶部导航栏 ========== -->
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <i class="fas fa-feather-alt"></i> 羽翼守望者
+        </div>
+        <div class="nav-gif">
+            <img src="image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#hero">首页</a></li>
+                <li><a href="#bird-guide">鸟类图鉴</a></li>
+                <li><a href="#conservation">保护行动</a></li>
+                <li><a href="#habitat">栖息地</a></li>
+                <li><a href="#gallery">观鸟日记</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- ========== HERO 主视觉区 ========== -->
+<section id="hero" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-bg-deco"></div>
+        <div class="hero-title">
+            <h1>羽翼 · 自然之声</h1>
+            <div class="hero-sub">🌿 守护每一片飞翔的羽毛 🌿</div>
+        </div>
+        <div class="hero-middle-img">
+            <img src="image/koshi.png" alt="恋恋">
+        </div>
+        <div class="hero-placeholder">
+            <i class="fas fa-dove"></i> 与鸟同行
+        </div>
+        <div class="scroll-hint">
+            <span>向下探索</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ========== 鸟类图鉴 板块 ========== -->
+<section id="bird-guide" class="game-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-book-open"></i> 鸟类图鉴 · 天空的使者 <i class="fas fa-book-open"></i></h2>
+            <div class="subtitle">全球超过一万种鸟类 · 生态平衡的守护者</div>
+        </div>
+        <div class="game-grid">
+            <!-- 左: 图片展示 -->
+            <div class="game-media">
+                <img src="image/屏幕截图%202026-07-01%20095352.png" alt="鸟类摄影" style="width: 100%; border-radius: 12px;" />
+            </div>
+            <!-- 右: 内容占位模块 -->
+            <div class="game-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-feather"></i> 鸟类多样性</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-tree"></i> <a href="html/Bird-Atlas/Bird-Diversity/forest-birds.html" style="color: inherit; text-decoration: none;">森林鸟类</a></li>
+                        <li><i class="fas fa-water"></i> <a href="html/Bird-Atlas/Bird-Diversity/wetland-birds.html" style="color: inherit; text-decoration: none;">湿地水鸟</a></li>
+                        <li><i class="fas fa-mountain"></i> <a href="html/Bird-Atlas/Bird-Diversity/raptor-alpine-birds.html" style="color: inherit; text-decoration: none;">猛禽与高山鸟</a></li>
+                        <li><i class="fas fa-city"></i> <a href="html/Bird-Atlas/Bird-Diversity/urban-birds.html" style="color: inherit; text-decoration: none;">城市适应物种</a></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-leaf"></i> 生态价值</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-seedling"></i> <a href="html/Bird-Atlas/Ecological-Value/eco-pollination.html" style="color: inherit; text-decoration: none;">传粉</a></li>
+                        <li><i class="fas fa-seedling"></i> <a href="html/Bird-Atlas/Ecological-Value/eco-seed-dispersal.html" style="color: inherit; text-decoration: none;">种子扩散</a></li>
+                        <li><i class="fas fa-bug"></i> <a href="html/Bird-Atlas/Ecological-Value/eco-pest-control.html" style="color: inherit; text-decoration: none;">虫害控制</a></li>
+                    </ul>
+                </div>
+                <div class="btn-placeholder">
+                    <i class="fas fa-binoculars"></i> <a href="https://www.birdnet.cn/index.php?mobile=no">了解更多鸟类</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 保护行动 板块 ========== -->
+<!-- ========== 保护行动 板块 ========== -->
+<section id="conservation" class="game-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-hand-holding-heart"></i> 保护行动 · 守护鸟类家园 <i class="fas fa-hand-holding-heart"></i></h2>
+            <div class="subtitle">每一份努力，都是对自然的承诺</div>
+        </div>
+        <div class="game-grid reverse-on-mobile">
+            <div class="game-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-shield-alt"></i> 栖息地保护</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-tree"></i> <a href="html/Protection-Action/Habitat-Protection/forest-restoration.html" style="color: inherit; text-decoration: none;">森林修复</a></li>
+                        <li><i class="fas fa-water"></i> <a href="html/Protection-Action/Habitat-Protection/wetland-restoration.html" style="color: inherit; text-decoration: none;">湿地恢复</a></li>
+                        <li><i class="fas fa-mountain"></i> <a href="html/Protection-Action/Habitat-Protection/protected-areas.html" style="color: inherit; text-decoration: none;">自然保护区</a></li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-fist-raised"></i> 反盗猎 & 宣传</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-gavel"></i> <a href="html/Protection-Action/Publicize/legal-education.html" style="color: inherit; text-decoration: none;">普法教育</a></li>
+                        <li><i class="fas fa-users"></i> <a href="html/Protection-Action/Publicize/community-participation.html" style="color: inherit; text-decoration: none;">社区参与</a></li>
+                        <li><i class="fas fa-satellite"></i> <a href="html/Protection-Action/Publicize/tech-monitoring.html" style="color: inherit; text-decoration: none;">科技监测</a></li>
+                    </ul>
+                </div>
+                <div class="btn-placeholder">
+                    <i class="fas fa-heart"></i> 加入守护者 (占位按钮)
+                </div>
+            </div>
+            <div class="game-media">
+                <img src="image/shutiao.jpg" alt="保护行动" style="width: 100%; border-radius: 12px;" />
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ========== 栖息地 板块 ========== -->
+<!-- ========== 栖息地 板块（滑动轮播） ========== -->
+<section id="habitat" class="compare-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-globe-asia"></i> 栖息地 · 共同的家园</h2>
+        </div>
+        <div class="habitat-slider">
+            <div class="habitat-track">
+                <!-- 森林 -->
+                <a href="html/habitat/forest.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_senlin.jpeg" alt="森林栖息地">
+                    </div>
+                    <h3>森林</h3>
+                    <div class="compare-placeholder">林鸟天堂 · 生物多样性占位</div>
+                </a>
+                <!-- 湿地 -->
+                <a href="html/habitat/wetland.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_shidi.png" alt="湿地栖息地">
+                    </div>
+                    <h3>湿地</h3>
+                    <div class="compare-placeholder">水鸟栖息 · 生态净化占位</div>
+                </a>
+                <!-- 城市 -->
+                <a href="html/habitat/city.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_chengshi.jpeg" alt="城市栖息地">
+                    </div>
+                    <h3>城市</h3>
+                    <div class="compare-placeholder">人与鸟类共处 · 城市生态占位</div>
+                </a>
+                <!-- 高山 -->
+                <a href="html/habitat/mountain.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_gaoshan.jpg" alt="高山栖息地">
+                    </div>
+                    <h3>高山</h3>
+                    <div class="compare-placeholder">岩壁精灵 · 高海拔适应占位</div>
+                </a>
+                <!-- 悬崖 -->
+                <a href="html/habitat/cliff.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_xuanya.jpeg" alt="悬崖栖息地">
+                    </div>
+                    <h3>悬崖</h3>
+                    <div class="compare-placeholder">峭壁筑巢 · 猛禽领地占位</div>
+                </a>
+                <!-- 荒漠 -->
+                <a href="html/habitat/desert.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_huangmo.jpeg" alt="荒漠栖息地">
+                    </div>
+                    <h3>荒漠</h3>
+                    <div class="compare-placeholder">沙洲飞羽 · 耐旱物种占位</div>
+                </a>
+                <!-- 戈壁 -->
+                <a href="html/habitat/gobi.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_gebi.jpeg" alt="戈壁栖息地">
+                    </div>
+                    <h3>戈壁</h3>
+                    <div class="compare-placeholder">砾石栖居 · 顽强生命占位</div>
+                </a>
+                <!-- 草原 -->
+                <a href="html/habitat/grassland.html" class="compare-card">
+                    <div class="img-placeholder">
+                        <img src="image/qxd_caoyuan.jpeg" alt="草原栖息地">
+                    </div>
+                    <h3>草原</h3>
+                    <div class="compare-placeholder">旷野逐风 · 地栖鸟类占位</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 观鸟日记 (画廊) ========== -->
+<section id="gallery" class="gallery-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-images"></i> 观鸟日记 · 自然瞬间</h2>
+        </div>
+        <div class="gallery-slider">
+            <div class="gallery-track">
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_xiao.png" alt="鸮">
+                    </div>
+                    <h3>雕枭/雪鸮</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_banjiu.png" alt="珠颈斑鸠(燕?)">
+                    </div>
+                    <h3>珠颈斑鸠(燕?)</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_shuiqu.jpg" alt="红尾水鸲">
+                    </div>
+                    <h3>红尾水鸲</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_yelu.jpeg" alt="夜鹭">
+                    </div>
+                    <h3>夜鹭</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_haiou.jpeg" alt="海鸥">
+                    </div>
+                    <h3>海鸥</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_bolao.jpg" alt="伯劳">
+                    </div>
+                    <h3>伯劳</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_baitoubei.jpg" alt="白头鹎">
+                    </div>
+                    <h3>白头鹎</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_liuying.jpg" alt="黄腰柳莺">
+                    </div>
+                    <h3>黄腰柳莺</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_xique.jpg" alt="喜鹊">
+                    </div>
+                    <h3>喜鹊</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_duya.png" alt="渡鸦">
+                    </div>
+                    <h3>渡鸦</h3>
+                </div>
+                <div class="gallery-item">
+                    <div class="img-placeholder">
+                        <img src="image/rj_sun.jpg" alt="红隼">
+                    </div>
+                    <h3>红隼</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== 底部页脚 ========== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-feather-alt"></i> 羽翼守望者
+            </div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 绿水青山，就是金山银山 | created by bxy，hqp，tsy</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="feather-particle-container"></div>
+
+</body>
+</html>

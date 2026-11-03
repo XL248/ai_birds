@@ -1,0 +1,8 @@
+{
+  "port": 5173,
+  "host": "127.0.0.1",
+  "proxyPrefix": "/api",
+
+  "_comment": "apiBase 留空或删掉这一行 = 代理模式，/api/** 会转发到 http://localhost:8080（开箱即用）。要直连别的后端就写完整地址，例如 http://192.168.1.8:8080；想彻底关掉代理用 node server.mjs --no-proxy。",
+  "apiBase": ""
+}

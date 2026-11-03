@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>种子扩散 · 森林之翼 | 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+    <style>
+        .eco-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .eco-block.reverse {
+            flex-direction: row-reverse;
+        }
+        .eco-block .img-wrap {
+            flex: 1;
+            min-width: 200px;
+        }
+        .eco-block .text-wrap {
+            flex: 1.2;
+        }
+        .eco-block .img-placeholder {
+            min-height: 200px;
+            background: #1a221a;
+            border-radius: 24px;
+            border: 1px solid #6f8f5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8fb07a;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+        .eco-block .img-placeholder i {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+        .eco-block .text-wrap p {
+            color: #d4d0c5;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .eco-block .text-wrap .source {
+            font-size: 0.9rem;
+            color: #9fc88a;
+        }
+        .eco-block .text-wrap .source a {
+            color: #b8d8a0;
+            text-decoration: underline;
+            transition: 0.2s;
+        }
+        .eco-block .text-wrap .source a:hover {
+            color: #e0f0d0;
+            text-shadow: 0 0 6px #6f9a5f;
+        }
+        @media (max-width: 768px) {
+            .eco-block, .eco-block.reverse {
+                flex-direction: column;
+            }
+            .eco-block .img-wrap {
+                width: 100%;
+            }
+        }
+        .page-title {
+            margin-bottom: 40px;
+        }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #b3d8a0;
+            border-bottom: 2px solid #6f9a5f;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#bird-guide">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-seedling"></i> 种子扩散 · 森林之翼</h2>
+            <div class="subtitle" style="margin-top: 8px;">鸟类是森林的播种者，维系着植物种群的延续与扩展</div>
+        </div>
+
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../image/zz_xiniao.jpeg" alt="种子扩散">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>鸟类在塑造和维持植物种群与群落方面发挥着基础性的全球作用。食果鸟类通过吞食果实后将种子随粪便排出（内吞种子扩散），部分食谷鸟类则通过搬运和贮藏种子（同吞种子扩散）来实现植物种子的传播。</p>
+            </div>
+        </div>
+
+        <div class="eco-block reverse">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../image/zz_tpn.jpg" alt="种子扩散">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>种子扩散有助于提高发芽率，将种子运送到远离母株的地方，甚至帮助植物在不断变化的气候中扩大分布范围。研究显示，鸟类通过种子扩散可促进热带森林的再生，增加植物多样性。</p>
+            </div>
+        </div>
+
+        <div class="eco-block">
+            <div class="img-wrap">
+                <div class="img-placeholder">
+                    <img src="../../../image/zz_senlin.jpg" alt="种子扩散">
+                </div>
+            </div>
+            <div class="text-wrap">
+                <p>全球81%的热带树木依赖动物传播种子，失去种子传播者会导致自然再生森林的碳积累量平均减少57%。鸟类作为重要的种子传播者，对碳汇和气候调节具有深远影响。</p>
+                <p class="source">📖 权威来源：<a href="https://www.jstage.jst.go.jp/article/jjo/74/1/74_1/_article/-char/en" target="_blank">点此处</a> 查看《Birds as seed dispersers of plants: their impacts on plant ecological and evolutionary dynamics》（日本鸟类学会刊, 2025）</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术研究，仅作展示</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="feather-particle-container"></div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>松鸡属 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../forest-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-dove"></i> 松鸡属 · 针叶林的隐士</h2>
+            <div class="subtitle">以树芽、浆果为食，冬季集群，求偶炫耀行为独特，是北方针叶林的标志鸟类</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20104801.png" alt="松鸡属典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>松鸡属（Tetrao）</strong>包括松鸡、黑琴鸡等，共约5种，分布于欧亚大陆北部寒带针叶林。体型较大，脚强健，善奔走，不善远飞。以松针、树芽、浆果、昆虫为食。冬季常集群，夏季单独活动。</p>
+                <p>繁殖期雄鸟有独特的求偶炫耀，如松鸡的尾羽展开并发出特殊鸣叫。筑巢于地面，每窝产6-10枚卵。因栖息地破坏和过度猎捕，部分种类数量下降，被列为受胁物种。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 松鸡（西方松鸡） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 西方松鸡（<em>Tetrao urogallus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20104934.png" alt="西方松鸡"></div></div>
+            <div class="text-wrap">
+                <p>西方松鸡是松鸡属中体型最大的种类，体长约60-85cm，雄鸟全身灰黑色，胸腹具铜绿色光泽，尾羽展开呈扇形。分布于欧洲和亚洲北部针叶林。</p>
+                <p>以松针、树芽、浆果为食，冬季常食松树嫩芽。繁殖期4-6月，雄鸟在固定的“求偶场”进行炫耀，吸引雌鸟。每窝产6-10枚卵。因狩猎和森林砍伐，分布区退缩。</p>
+            </div>
+        </div>
+        <!-- 黑琴鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 黑琴鸡（<em>Lyrurus tetrix</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20105042.png" alt="黑琴鸡"></div></div>
+            <div class="text-wrap">
+                <p>黑琴鸡体长约40-55cm，雄鸟全身黑色，具蓝绿色光泽，尾羽呈琴状，眼上有红色肉冠。分布于欧亚大陆北部林缘、灌丛草地。</p>
+                <p>杂食性，以植物芽苞、浆果、昆虫为食。繁殖期集群求偶，雄鸟间激烈竞争。筑巢于地面，每窝产6-8枚卵。因湿地和草甸减少，种群下降。</p>
+            </div>
+        </div>
+        <!-- 花尾榛鸡 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 花尾榛鸡（<em>Bonasa bonasia</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20105139.png" alt="花尾榛鸡"></div></div>
+            <div class="text-wrap">
+                <p>花尾榛鸡体型较小，约35-40cm，全身灰褐色带花纹，尾羽具黑色横斑。分布于欧亚大陆北部针阔混交林，喜灌丛和林缘。</p>
+                <p>以植物芽苞、浆果、昆虫为食。繁殖期4-6月，雄鸟有低沉的鸣叫和短促炫耀。筑巢于树根下，每窝产6-10枚卵。因栖息地破碎化，局部减少。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20105359.png" alt="松鸡属保护"></div></div>
+            <div class="text-wrap">
+                <p>松鸡属鸟类依赖原生森林，保护大片连续针叶林、控制狩猎是保护关键。公众可通过支持森林保护项目、避免干扰求偶场来帮助它们。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>湿地恢复 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#conservation">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-water"></i> 湿地恢复 · 水鸟的摇篮</h2>
+            <div class="subtitle">湿地是地球上生产力最高的生态系统之一，也是众多水鸟赖以生存的家园</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/sd_th.jpeg" alt="退化">
+            </div></div>
+            <div class="text-wrap">
+                <p>全球湿地面积自1900年以来已经减少了64%（Ramsar, 2018），主要原因为农业开垦、城市扩张和水污染。湿地的丧失直接威胁到全球约1/3依赖湿地生活的鸟类种群，包括鹤类、鹳类、鹭类和雁鸭类。</p>
+                <p>湿地恢复包括水文恢复（重建自然水文周期）、植被恢复（种植本土水生植物）和污染治理等措施。成功的案例包括中国的“长江湿地保护网络”和“沿海湿地修复工程”，已使部分地区的水鸟数量明显回升。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/sd_rg.jpeg" alt="人工">
+            </div></div>
+            <div class="text-wrap">
+                <p>人工湿地（如水稻田、鱼塘）可成为水鸟的重要补充栖息地。研究表明，管理良好的稻田可为水鸟提供丰富的食物（螺类、昆虫）和栖息场所，尤其在迁徙季节。在长江中下游，数以万计的越冬白鹤、东方白鹳依赖圩区稻田觅食。</p>
+                <p>恢复湿地时，应注重“近自然”设计，包括浅滩、深水区、岛屿和植被带，创造多样化的微生境，满足不同水鸟的生态需求。</p>
+            </div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/sd_sn.jpeg" alt="恢复">
+            </div></div>
+            <div class="text-wrap">
+                <p>中国近年来在湿地保护方面成绩斐然，已建立600多处湿地自然保护区，并实施《湿地保护法》（2022）。但湿地恢复仍面临资金不足、季节性缺水、外来物种入侵等挑战。</p>
+                <p>未来应加强跨区域协作，构建湿地生态廊道，同时推动湿地生态补偿机制，鼓励社区参与管护。鸟类监测数据（如水鸟种群数量）是评估恢复成效的重要指标，应长期坚持。</p>
+                <p class="source">📖 参考文献：<a href="https://www.ramsar.org/" target="_blank">点此处</a> 查看拉姆萨尔湿地公约官网；<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟湿地保护项目。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

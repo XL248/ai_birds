@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>森林修复 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../js/main.js" defer></script>
+    <script src="../../../config/api-base.js"></script>
+    <script src="../../../app/api.js"></script>
+    <script src="../../../js/auth-modal.js" defer></script>
+    <style>
+        /* 仅保留图文穿插布局，不覆盖全局背景和粒子 */
+        .eco-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder {
+            min-height: 220px;
+            background: #1a221a;
+            border-radius: 24px;
+            border: 1px solid #6f8f5a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8fb07a;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p {
+            color: #d4d0c5;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .eco-block .text-wrap .source {
+            font-size: 0.9rem;
+            color: #9fc88a;
+        }
+        .eco-block .text-wrap .source a {
+            color: #b8d8a0;
+            text-decoration: underline;
+            transition: 0.2s;
+        }
+        .eco-block .text-wrap .source a:hover {
+            color: #e0f0d0;
+            text-shadow: 0 0 6px #6f9a5f;
+        }
+        @media (max-width: 768px) {
+            .eco-block, .eco-block.reverse { flex-direction: column; }
+            .eco-block .img-wrap { width: 100%; }
+        }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 {
+            font-size: 2.5rem;
+            color: #b3d8a0;
+            border-bottom: 2px solid #6f9a5f;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        .page-title .subtitle { margin-top: 8px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../index.html#hero">首页</a></li>
+                <li><a href="../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../../../index.html#conservation">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-tree"></i> 森林修复 · 为鸟类重建家园</h2>
+            <div class="subtitle">恢复退化森林生态系统，是保护林鸟最直接有效的途径</div>
+        </div>
+        <!-- 内容同之前，此处省略以节省篇幅，但实际应与之前一致 -->
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+            <img src="../../../image/xf_duibi.jpg" alt="森林修复">
+            </div></div>
+            <div class="text-wrap">
+                <p>全球森林面积正以惊人的速度减少，每年约有1000万公顷森林被毁或退化（FAO, 2020）。森林的丧失直接导致林鸟栖息地破碎化，许多依赖原始林的物种面临灭绝风险。森林修复旨在通过人工干预或自然恢复，使退化林地重新具备完整的生态功能，为鸟类提供安全的繁殖、觅食和迁徙停歇场所。</p>
+                <p>修复策略包括再造林（reforestation）、辅助自然更新、生态廊道建设等。科学研究表明，经过20~30年修复的次生林，其鸟类多样性可恢复到原始林的70%~80%（Chazdon et al., 2009）。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/xf_xt.jpg" alt="森林修复">
+            </div></div>
+            <div class="text-wrap">
+                <p>选择适宜的乡土树种进行种植至关重要。外来速生树种虽能快速成林，但往往无法为当地鸟类提供足够的食物（果实、昆虫）和巢址。例如，在华南地区种植的桉树纯林，其鸟种丰富度远低于混交的乡土阔叶林（Zhang et al., 2021）。因此，修复工作应优先选用本土植物，并模拟自然林的分层结构，营造林冠层、下木层和草本层，满足不同生态位鸟类的需求。</p>
+                <p>此外，保留枯立木和倒木对依赖树洞筑巢的鸟类（如啄木鸟、山雀）尤为重要。研究表明，每公顷保留5~8棵枯立木，可显著增加洞巢鸟的种群密度（Cockle et al., 2010）。</p>
+            </div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder">
+                <img src="../../../image/xf_sl.jpeg" alt="森林修复">
+            </div></div>
+            <div class="text-wrap">
+                <p>在中国，天然林保护工程和退耕还林工程已取得显著成效。根据国家林草局数据，2023年全国森林覆盖率已达到24.02%，许多曾经消失的鸟类（如海南孔雀雉、白颈长尾雉）逐渐回归。然而，修复工作仍面临挑战，如气候变化引发的干旱、火灾风险增加，以及修复资金和技术不足。</p>
+                <p>未来，应加强社区参与和科学监测，利用遥感技术和公民科学数据评估修复效果，确保修复工作真正惠及鸟类种群。只有将生态修复与生物多样性保护紧密结合，才能实现“绿水青山就是金山银山”的美好愿景。</p>
+                <p class="source">📖 参考文献：<a href="https://www.fao.org/forest-resources-assessment/en/" target="_blank">点此处</a> 查看 FAO《全球森林资源评估》；<a href="https://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(09)00099-8" target="_blank">点此处</a> 查看 Chazdon 等关于次生林恢复的研究。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

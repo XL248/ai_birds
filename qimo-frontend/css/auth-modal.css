@@ -1,0 +1,241 @@
+/* ========== 登录/注册模态框 · 森林主题 ========== */
+
+.auth-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(5, 8, 3, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 10001;
+  justify-content: center;
+  align-items: center;
+}
+.auth-modal-overlay.active {
+  display: flex;
+}
+
+.auth-modal {
+  background: rgba(10, 15, 10, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid #4a6a3a;
+  border-radius: 28px;
+  padding: 40px 32px 32px;
+  width: 90vw;
+  max-width: 420px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(80, 130, 60, 0.1);
+  animation: modalIn 0.3s ease-out;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(-30px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  background: none;
+  border: none;
+  color: #8fb07a;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.auth-modal-close:hover {
+  color: #d4e8c0;
+  text-shadow: 0 0 6px #6f9a5f;
+}
+
+.auth-modal-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.auth-modal-header i {
+  font-size: 2rem;
+  color: #9bc78a;
+  text-shadow: 0 0 5px #3f6b3a;
+  margin-bottom: 8px;
+  display: block;
+}
+.auth-modal-header .auth-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: #9bc78a;
+  text-shadow: 0 0 5px #3f6b3a;
+  letter-spacing: 2px;
+}
+
+/* 登录/注册 tab */
+.auth-modal-tabs {
+  display: flex;
+  border-bottom: 1px solid #3a5a2a;
+  margin-bottom: 24px;
+}
+.auth-modal-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  color: #8aa87a;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  transition: 0.2s;
+  border-bottom: 2px solid transparent;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.auth-modal-tab:hover {
+  color: #b8d8a0;
+}
+.auth-modal-tab.active {
+  color: #b3d8a0;
+  border-bottom: 2px solid #6f9a5f;
+}
+
+/* 表单 */
+.auth-modal-body form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.auth-modal-body form.hidden {
+  display: none;
+}
+
+.auth-modal-body label {
+  color: #9fc88a;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  margin-bottom: -10px;
+}
+.auth-modal-body input {
+  background: #141c14;
+  border: 1px solid #4a6a3a;
+  border-radius: 40px;
+  color: #d4d0c5;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  padding: 12px 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.auth-modal-body input:focus {
+  border-color: #8fc078;
+  box-shadow: 0 0 8px rgba(100, 160, 80, 0.3);
+  outline: none;
+}
+.auth-modal-body input::placeholder {
+  color: #5a7a4a;
+}
+
+.auth-modal-body .btn-submit {
+  border-radius: 60px;
+  background: rgba(70, 110, 60, 0.3);
+  border: 1px solid #6f9a5f;
+  color: #c8e0b0;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 4px;
+}
+.auth-modal-body .btn-submit:hover {
+  background: #3f6a30;
+  border-color: #8fc078;
+  letter-spacing: 3px;
+}
+
+/* 错误提示 */
+.auth-modal-body .field-error {
+  color: #e8a0a0;
+  font-size: 0.8rem;
+  margin-top: -10px;
+  display: none;
+}
+.auth-modal-body .field-error.show {
+  display: block;
+}
+
+/* 导航栏登录区域 */
+.nav-auth-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+.nav-auth-area .nav-login-btn {
+  font-family: 'Cinzel', serif;
+  color: #9fc88a;
+  cursor: pointer;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  padding: 4px 14px !important;
+  border: 1px solid #5f8a4a;
+  border-radius: 30px;
+  transition: 0.2s;
+  background: rgba(70, 110, 60, 0.2);
+}
+.nav-auth-area .nav-login-btn:hover {
+  background: #3f6a30;
+  border-color: #8fc078;
+  color: #d4e8c0 !important;
+  text-shadow: none;
+}
+.nav-auth-area .nav-user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-auth-area .nav-user-name {
+  color: #b8d8a0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+}
+.nav-auth-area .nav-logout-btn {
+  color: #7fa06a;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.2s;
+}
+.nav-auth-area .nav-logout-btn:hover {
+  color: #d4a0a0;
+}
+
+/* 导航栏用户下拉菜单 */
+.nav-user-menu {
+  position: relative; display: inline-flex; align-items: center;
+}
+.nav-user-menu .nav-user-name {
+  color: #b8d8a0; font-family: 'Cinzel', serif; font-size: 0.9rem;
+  cursor: pointer; white-space: nowrap;
+}
+.nav-user-menu .nav-user-name:hover { color: #d4e8c0; }
+.nav-user-menu .nav-user-name .fa-caret-down { font-size: 0.7rem; margin-left: 2px; }
+.nav-user-dropdown {
+  display: none; position: absolute; top: calc(100% + 4px); right: 0;
+  background: rgba(15,20,15,0.97); border: 1px solid #5f8a4a; border-radius: 16px;
+  min-width: 150px; padding: 6px 0; backdrop-filter: blur(12px); z-index: 1001;
+}
+.nav-user-dropdown.open { display: block; }
+.nav-user-dropdown a {
+  display: block; padding: 10px 18px; color: #c8e0b0; font-size: 0.85rem;
+  font-family: 'Cinzel', serif; letter-spacing: 1px; transition: 0.2s;
+}
+.nav-user-dropdown a:hover {
+  background: rgba(70,110,60,0.3); color: #f0f8e8; text-shadow: none;
+}
+.nav-user-dropdown a i { width: 20px; margin-right: 6px; }
+
+@media (max-width: 768px) {
+  .nav-auth-area { margin-left: 0; padding: 8px 0; }
+  .auth-modal { padding: 28px 20px 24px; border-radius: 22px; }
+  .nav-user-dropdown { right: auto; left: 0; }
+}

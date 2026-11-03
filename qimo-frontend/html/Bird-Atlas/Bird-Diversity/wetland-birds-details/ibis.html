@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鹮科 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../wetland-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-feather"></i> 鹮科 · 弯喙的猎手</h2>
+            <div class="subtitle">长喙下弯，涉水觅食，是湿地中独特的涉禽类群</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141311.png" alt="鹮科典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鹮科（Threskiornithidae）</strong>包含鹮和琵鹭，全球约14属30余种。鹮类喙长而下弯，琵鹭喙扁平似琵琶。它们栖息于湿地、沼泽、稻田，以鱼虾、昆虫、软体动物为食。</p>
+                <p>鹮科鸟类常成群活动，繁殖期集群营巢于树上或灌丛。部分种类如朱鹮已极危，受到重点保护。在中国，朱鹮的野化放归是成功的保护案例。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 白鹮 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 白鹮（<em>Threskiornis melanocephalus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141433.png" alt="白鹮"></div></div>
+            <div class="text-wrap">
+                <p>白鹮体长约65-75cm，全身白色，头颈部裸出黑色，喙黑色下弯。分布于亚洲南部及东南亚，栖息于湖泊、沼泽和稻田，也见于红树林。</p>
+                <p>以鱼、蛙、昆虫、谷物为食，常成群觅食，有时与其他涉禽混群。繁殖期4-6月，集群营巢于树上，每窝产2-4枚卵。在中国为稀有候鸟，偶见于云南、海南。</p>
+            </div>
+        </div>
+        <!-- 朱鹮 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 朱鹮（<em>Nipponia nippon</em>）—— 极危（CR）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141543.png" alt="朱鹮"></div></div>
+            <div class="text-wrap">
+                <p>朱鹮是世界濒危鸟类，曾一度仅存于中国陕西洋县。体长约75-80cm，头部红色，喙黑色，嘴端红色，非繁殖羽白色，繁殖羽灰色。飞翔时双翅下方呈粉红色。</p>
+                <p>栖息于水田、溪流，以泥鳅、鱼虾为食。繁殖期3-5月，营巢于高大树木上，每窝产2-4枚卵。通过人工保护和野化放归，种群已恢复至数千只，但野生种群仍依赖保护管理。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/species/22697548/132069296" target="_blank">点此处</a> 查看 IUCN 朱鹮评估。</p>
+            </div>
+        </div>
+        <!-- 彩鹮 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 彩鹮（<em>Plegadis falcinellus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141655.png" alt="彩鹮"></div></div>
+            <div class="text-wrap">
+                <p>彩鹮体长约45-55cm，全身栗色带金属光泽，喙下弯，脚细长。分布于全球温暖地带，中国为稀罕候鸟，偶见于东部和南部湿地。</p>
+                <p>喜沼泽、稻田，以软体动物、昆虫为食。繁殖期集群于芦苇丛，每窝产3-4枚卵。因湿地开发，种群数量有所下降。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/屏幕截图%202026-07-01%20141851.png" alt="鹮科保护"></div></div>
+            <div class="text-wrap">
+                <p>鹮科鸟类受湿地退化威胁严重，保护栖息地是首要任务。中国已建立多个自然保护区保护朱鹮等珍稀物种，同时开展公众教育，提高保护意识。减少农药使用，保留自然湿地是关键。</p>
+                <p class="source">📖 了解更多：<a href="https://www.ramsar.org/" target="_blank">点此处</a> 查看拉姆萨尔湿地公约。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>

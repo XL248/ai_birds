@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>鸽属 · 羽翼守望者</title>
+    <link rel="stylesheet" href="../../../../css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../../../js/main.js" defer></script>
+    <script src="../../../../config/api-base.js"></script>
+    <script src="../../../../app/api.js"></script>
+    <script src="../../../../js/auth-modal.js" defer></script>
+    <script src="../../../../js/bird-interact.js" defer></script>
+    <style>
+        .eco-block { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
+        .eco-block.reverse { flex-direction: row-reverse; }
+        .eco-block .img-wrap { flex: 1; min-width: 200px; }
+        .eco-block .text-wrap { flex: 1.2; }
+        .eco-block .img-placeholder { min-height: 220px; background: #1a221a; border-radius: 24px; border: 1px solid #6f8f5a; display: flex; align-items: center; justify-content: center; color: #8fb07a; font-size: 1.2rem; box-shadow: 0 6px 12px rgba(0,0,0,0.5); padding: 20px; }
+        .eco-block .img-placeholder i { font-size: 3rem; margin-right: 10px; }
+        .eco-block .text-wrap p { color: #d4d0c5; line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
+        .eco-block .text-wrap .source { font-size: 0.9rem; color: #9fc88a; }
+        .eco-block .text-wrap .source a { color: #b8d8a0; text-decoration: underline; transition: 0.2s; }
+        .eco-block .text-wrap .source a:hover { color: #e0f0d0; text-shadow: 0 0 6px #6f9a5f; }
+        @media (max-width: 768px) { .eco-block, .eco-block.reverse { flex-direction: column; } .eco-block .img-wrap { width: 100%; } }
+        .page-title { margin-bottom: 40px; }
+        .page-title h2 { font-size: 2.5rem; color: #b3d8a0; border-bottom: 2px solid #6f9a5f; display: inline-block; padding-bottom: 8px; }
+        .page-title .subtitle { margin-top: 8px; }
+        .species-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #c8e0b0; margin: 30px 0 16px; border-left: 4px solid #6f9a5f; padding-left: 16px; }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+        <div class="nav-gif">
+            <img src="../../../../image/top_yelu.gif" alt="动图">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../../../../index.html#hero">首页</a></li>
+                <li><a href="../../../../index.html#bird-guide">鸟类图鉴</a></li>
+                <li><a href="../../../../index.html#conservation">保护行动</a></li>
+                <li><a href="../../../../index.html#habitat">栖息地</a></li>
+                <li><a href="../../../../index.html#gallery">观鸟日记</a></li>
+                <li><a href="../urban-birds.html">返回</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+<section class="game-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="page-title">
+            <h2><i class="fas fa-dove"></i> 鸽属 · 广场的居民</h2>
+            <div class="subtitle">人类最早驯化的鸟类之一，如今在城市广场和街道上随处可见</div>
+        </div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0055.png" alt="鸽属典型生境"></div></div>
+            <div class="text-wrap">
+                <p><strong>鸽属（Columba）</strong>隶属于鸠鸽科，全球约35种，分布于世界各地。体型中等（约30-40cm），羽毛以灰、蓝、白为主，颈部常有金属光泽。以谷物、种子为食，也吃植物嫩芽。原鸽是家鸽的野生祖先，已适应全球城市环境。</p>
+                <p>繁殖期营巢于悬崖、建筑或树上，巢由细枝搭建，结构简单。每窝产2枚卵。鸽群在城市中大量存在，依赖人类投喂。</p>
+                <p class="source">📖 参考：<a href="https://www.birdlife.org/" target="_blank">点此处</a> 查看国际鸟盟资料。</p>
+            </div>
+        </div>
+        <!-- 原鸽（家鸽） -->
+        <div class="species-title"><i class="fas fa-feather"></i> 原鸽（<em>Columba livia</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0056.png" alt="原鸽"></div></div>
+            <div class="text-wrap">
+                <p>原鸽是家鸽的祖先，体长约30-35cm，羽毛蓝灰色，翼具两道黑色横斑，尾端黑色。全球广泛分布，尤其在城市广场和街道常见。</p>
+                <p>以谷物、种子为食，也吃人类丢弃的食物。繁殖期全年均可，每年产多窝，每窝2枚卵。群居性强，常成千上百只集群活动。</p>
+            </div>
+        </div>
+        <!-- 岩鸽 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 岩鸽（<em>Columba rupestris</em>）</div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0057.png" alt="岩鸽"></div></div>
+            <div class="text-wrap">
+                <p>岩鸽体长约30-32cm，外形似原鸽，但尾部具白色横带，栖息于中国西部和北部的山地、悬崖和荒漠。</p>
+                <p>以谷物和草籽为食，繁殖期3-7月，营巢于岩缝中。在中国北方部分地区，岩鸽也会进入城市。</p>
+            </div>
+        </div>
+        <!-- 斑尾林鸽 -->
+        <div class="species-title"><i class="fas fa-feather"></i> 斑尾林鸽（<em>Columba palumbus</em>）</div>
+        <div class="eco-block">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0058.png" alt="斑尾林鸽"></div></div>
+            <div class="text-wrap">
+                <p>斑尾林鸽体长约38-42cm，上体灰褐色，颈部具白色斑块，翼上具白色横带。分布于欧洲和亚洲西部，在中国仅见于新疆西北部。</p>
+                <p>栖息于森林和林缘，以橡果、浆果和种子为食。繁殖期4-7月，每窝产2枚卵。</p>
+                <p class="source">📖 参考：<a href="https://www.iucnredlist.org/" target="_blank">点此处</a> 查看 IUCN 评估。</p>
+            </div>
+        </div>
+        <div class="eco-block reverse">
+            <div class="img-wrap"><div class="img-placeholder"><img src="../../../../image/0059.png" alt="鸽属保护"></div></div>
+            <div class="text-wrap">
+                <p>鸽属在城市生态中扮演种子传播和食物链环节角色，但过度投喂可能导致种群失衡。建议适量喂食、清理鸽粪、维护公共卫生。</p>
+                <p class="source">📖 了解更多：<a href="https://www.forestry.gov.cn/" target="_blank">点此处</a> 查看中国林草局。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo"><i class="fas fa-feather-alt"></i> 羽翼守望者</div>
+            <div class="footer-text">
+                <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+                <p class="copyright">© 环保主题同人页 | 内容基于学术资料整理</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="feather-particle-container"></div>
+</body>
+</html>
