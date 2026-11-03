@@ -2,15 +2,26 @@
   "name": "qimo-frontend",
   "version": "1.0.0",
   "private": true,
-  "description": "羽翼守望者 · 前端（静态站点 + 接口配置层）。前后端分离后独立部署。",
+  "description": "羽翼守望者 · Vue 3 前端应用。",
   "type": "module",
   "scripts": {
-    "start": "node server.mjs",
-    "dev": "node server.mjs",
-    "serve": "node server.mjs --no-proxy",
+    "start": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "node server.mjs",
     "verify": "node tools/verify.mjs"
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "lucide-vue-next": "^0.577.0",
+    "pinia": "^2.3.1",
+    "vue": "^3.5.44",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "vite": "^6.4.5"
   }
 }

@@ -5,7 +5,7 @@
 
 ```
 D:\modify\
-├── qimo-frontend\     前端：纯静态站点（HTML/CSS/JS/图片 + API 配置层）
+├── qimo-frontend\     前端：Vue 3 + Vite（保留原有知识文章与图片）
 ├── qimo-backend\      后端：Spring Boot，只提供 /api/** 的 JSON 接口
 └── README.md          本文件
 ```
@@ -21,10 +21,9 @@ D:\modify\
 
 改造后：
 
-- **前端**搬进 `qimo-frontend`，可以用任意静态服务器（Nginx / CDN / `node server.mjs`）独立发布；
+- **前端**搬进 `qimo-frontend` 并重构为 Vue 3 应用，生产构建后可用 Nginx / CDN 独立发布；
 - **后端**删掉 `static` 目录，只留 `/api/**`，另外补上跨源必需的 CORS 配置；
-- 前端所有接口调用收敛到一个配置层（`config/api-base.js` + `app/api.js`），
-  "后端在哪"从此只有一个地方要改。
+- Vue 页面通过 `src/api.js` 统一调用后端；保留的静态文章页继续使用原 API 配置层。
 
 **后端本来就已经是 REST API**（`AuthController` / `UserController` / `SocialController` 全是
 `@RestController`，路径都在 `/api` 下），所以这次改造没有重写任何业务代码——Controller、
@@ -45,15 +44,16 @@ mvn spring-boot:run
 > ⚠️ 这台机器的 `JAVA_HOME` 指向 `jdk1.8.0_202`，而 Spring Boot 3.x 要求 17+。
 > 编译前先设：`$env:JAVA_HOME = "C:\Program Files\Java\jdk-17"`
 
-### 前端（只要 Node 18+，**不需要 npm install**）
+### 前端（Node 18+）
 
 ```powershell
-cd D:\modify\qimo-frontend
-node server.mjs
-# 打开 http://127.0.0.1:5173/index.html
+cd qimo-frontend
+npm install
+npm run dev
+# 打开 http://127.0.0.1:5173/
 ```
 
-`server.mjs` 会同时做两件事：发静态文件 + 把 `/api/**` 反向代理到 `http://localhost:8080`。
+Vite 会把 `/api/**` 反向代理到 `http://localhost:8080`。
 浏览器眼里前后端同源，所以 Session Cookie 完全不用额外配置——**先用这个把链路跑通**。
 
 ---

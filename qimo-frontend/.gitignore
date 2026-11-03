@@ -2,6 +2,7 @@
 # 这个工程没有 npm 依赖，需要忽略的东西很少。
 
 node_modules/
+dist/
 .DS_Store
 Thumbs.db
 *.log

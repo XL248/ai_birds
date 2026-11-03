@@ -16,10 +16,12 @@
  * 用法：node tools/verify.mjs [frontendRoot]
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
 import { join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
 
-const ROOT = resolve(process.argv[2] ?? 'D:/modify/qimo-frontend')
+const ROOT = resolve(process.argv[2] ?? fileURLToPath(new URL('..', import.meta.url)))
 
 let failures = 0
 let checks = 0
@@ -43,7 +45,7 @@ function section(title) {
 
 function walk(dir, filter, out = []) {
   for (const name of readdirSync(dir)) {
-    if (name === 'node_modules' || name === 'tools') continue
+    if (name === 'node_modules' || name === 'tools' || name === 'dist') continue
     const full = join(dir, name)
     if (statSync(full).isDirectory()) walk(full, filter, out)
     else if (filter(full)) out.push(full)
@@ -58,11 +60,9 @@ const jsFiles = walk(ROOT, (f) => /\.(js|mjs)$/i.test(f))
 section('工程结构')
 check('index.html 存在（首页）', existsSync(join(ROOT, 'index.html')))
 if (existsSync(join(ROOT, 'index.html'))) {
-  // 这条断言是被真事故逼出来的：骨架化脚本重复运行时，兼容跳板曾经覆盖过真正的首页，
-  // 表面上"index.html 存在"，实际打开只是一句跳转。
   const home = readFileSync(join(ROOT, 'index.html'), 'utf8')
-  check('index.html 是完整首页（含 #bird-guide 板块）', home.includes('id="bird-guide"'))
-  check('index.html 不是跳转页', !home.includes('正在跳转') && !/location\.replace\('index\.html'/.test(home))
+  check('index.html 是 Vue 应用入口', home.includes('id="app"') && home.includes('/src/main.js'))
+  check('index.html 不是旧兼容跳转页', !home.includes('location.replace'))
 }
 check('main.html 兼容跳板存在', existsSync(join(ROOT, 'main.html')))
 if (existsSync(join(ROOT, 'main.html'))) {
@@ -72,6 +72,12 @@ if (existsSync(join(ROOT, 'main.html'))) {
 check('config/api-base.js 存在', existsSync(join(ROOT, 'config', 'api-base.js')))
 check('app/api.js 存在', existsSync(join(ROOT, 'app', 'api.js')))
 check('server.mjs 存在', existsSync(join(ROOT, 'server.mjs')))
+check('Vue 入口与路由存在', existsSync(join(ROOT, 'src', 'main.js')) && existsSync(join(ROOT, 'src', 'router.js')))
+check('Vue 用户页已迁移', ['HomePage.vue', 'BirdCatalogPage.vue', 'BirdDetailPage.vue', 'ProfilePage.vue', 'DiaryPage.vue', 'LeaderboardPage.vue']
+  .every((name) => existsSync(join(ROOT, 'src', 'pages', name))))
+const packageJson = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'))
+check('Vue / Pinia / Vue Router 依赖已配置', ['vue', 'pinia', 'vue-router'].every((name) => packageJson.dependencies?.[name]))
+check('Vite 开发和生产构建脚本已配置', Boolean(packageJson.scripts?.dev && packageJson.scripts?.build))
 check('没有残留 static/ 目录', !existsSync(join(ROOT, 'static')))
 console.log('  -- 共 ' + htmlFiles.length + ' 个 HTML，' + jsFiles.length + ' 个 JS 文件')
 
@@ -124,8 +130,9 @@ for (const file of htmlFiles) {
   }
 
   // API 层是否加载（main.html 只是兼容跳板，不做接口调用，不要求它加载）
-  const isStub = /^main\.html$/i.test(rel(file))
-  if (!isStub && (!text.includes('config/api-base.js') || !text.includes('app/api.js'))) {
+  const relativeFile = rel(file)
+  const isAppShell = relativeFile === 'main.html' || relativeFile === 'index.html'
+  if (!isAppShell && (!text.includes('config/api-base.js') || !text.includes('app/api.js'))) {
     missingApiLayer.push(rel(file))
   }
 }
@@ -138,17 +145,14 @@ check('所有页面都加载了 API 配置层', missingApiLayer.length === 0, mi
 check('没有 fetch(\'/api/...\') 残留', apiLiteralFetches.length === 0, apiLiteralFetches.slice(0, 8).join(' | '))
 
 section('JS 语法')
-// server.mjs / qimo 的 node 脚本用的是 ESM，vm.Script 只认脚本语法，
-// 所以这里只对浏览器端脚本做语法解析，Node 侧脚本单独用 node --check 验证。
+// ESM imports are checked by Node; Vue templates are checked by the Vite build.
 const browserScripts = jsFiles.filter((f) => !/server\.mjs$/i.test(f) && !f.includes('tools'))
 let syntaxFailures = 0
 for (const file of browserScripts) {
-  const source = readFileSync(file, 'utf8')
-  try {
-    new vm.Script(source, { filename: rel(file) })
-  } catch (error) {
+  const result = spawnSync(process.execPath, ['--check', file], { encoding: 'utf8' })
+  if (result.status !== 0) {
     syntaxFailures++
-    fail(rel(file), error.message)
+    fail(rel(file), result.stderr.trim())
   }
 }
 if (syntaxFailures === 0) ok(browserScripts.length + ' 个浏览器端 JS 文件语法均可解析')

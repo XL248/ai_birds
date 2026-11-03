@@ -27,6 +27,8 @@ import { fileURLToPath } from 'node:url'
 import { dirname } from 'node:path'
 
 const ROOT = dirname(fileURLToPath(import.meta.url))
+const DIST = join(ROOT, 'dist')
+const STATIC_ROOT = existsSync(join(DIST, 'index.html')) ? DIST : ROOT
 
 function argOf(flag) {
   const index = process.argv.indexOf(flag)
@@ -113,10 +115,10 @@ function serveStatic(req, res) {
   if (urlPath.endsWith('/')) urlPath += 'index.html'
 
   const relative = normalize(urlPath).replace(/^([/\\])+/, '')
-  let filePath = resolve(ROOT, relative)
+  let filePath = resolve(STATIC_ROOT, relative)
 
   // 目录穿越防护：解析后必须还在 ROOT 之内
-  if (filePath !== ROOT && !filePath.startsWith(ROOT + sep)) {
+  if (filePath !== STATIC_ROOT && !filePath.startsWith(STATIC_ROOT + sep)) {
     res.writeHead(403, { 'content-type': 'text/plain; charset=utf-8' })
     res.end('403 越界访问')
     return
@@ -157,7 +159,7 @@ server.listen(port, host, () => {
   console.log('  羽翼守望者 · 前端已启动')
   console.log('  ------------------------------------------------------------')
   console.log('  页面地址 : http://' + host + ':' + port + '/index.html')
-  console.log('  静态根   : ' + ROOT)
+  console.log('  静态根   : ' + STATIC_ROOT)
   if (proxyEnabled && apiBase !== '') {
     console.log('  接口模式 : 代理  ' + proxyPrefix + '/**  ->  ' + apiBase)
   } else {

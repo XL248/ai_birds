@@ -1,9 +1,7 @@
 # 前端工程说明
 
-羽翼守望者（qimo）的**前端**，从原 Spring Boot 工程的 `src/main/resources/static` 整体迁出。
-
-它现在是一个**不依赖任何构建工具、不需要 npm install 的静态站点**：一堆 HTML/CSS/JS/图片，
-外加一层"后端在哪"的配置。你可以用任何静态服务器把它发出去。
+羽翼守望者（qimo）的**前端**，从原 Spring Boot 工程迁出后重构为 Vue 3 + Vite 应用。
+首页、图鉴交互、登录注册、个人档案、日记和排行榜由 Vue 管理；原有鸟类与保护知识文章作为静态内容页保留。
 
 ---
 
@@ -11,8 +9,18 @@
 
 ```
 qimo-frontend/
-├── index.html                  ← 首页（原 main.html）
-├── main.html                   ← 兼容跳板：老地址 /main.html 自动带 hash 跳到 index.html
+├── index.html                  ← Vue 应用入口
+├── src/
+│   ├── App.vue                 全局导航、页脚与认证弹窗
+│   ├── router.js               Hash 路由
+│   ├── api.js                  带 Session Cookie 的 API 客户端
+│   ├── stores/session.js       Pinia 登录态
+│   ├── components/             公用 Vue 组件
+│   ├── pages/                  首页、图鉴、档案、日记、排行榜
+│   └── style.css               响应式样式
+├── vite.config.js              Vue 插件、API 代理、旧内容页打包
+├── package.json                Vue / Vite 工程脚本
+├── main.html                   旧地址兼容跳板
 ├── config/
 │   └── api-base.js             ★ 唯一决定"后端在哪"的地方
 ├── app/
@@ -29,7 +37,7 @@ qimo-frontend/
 │   ├── Protection-Action/      保护行动
 │   └── user/                   个人中心 / 观鸟日记 / 排行榜
 ├── image/                      全部配图（约 170 MB）
-├── server.mjs                  零依赖静态服务器 + 接口反向代理
+├── server.mjs                  构建产物静态服务器 + 接口反向代理
 ├── qimo.config.json            端口 / 代理 / 后端地址
 └── tools/verify.mjs            自检脚本
 ```
@@ -38,35 +46,24 @@ qimo-frontend/
 
 ## 2. 跑起来（本地开发）
 
-前置：装了 Node 18+。**不需要 `npm install`**，这个工程没有任何 npm 依赖。
+前置：Node 18+。
 
 ```powershell
-cd D:\modify\qimo-frontend
-node server.mjs
-# 然后打开 http://127.0.0.1:5173/index.html
+cd qimo-frontend
+npm install
+npm run dev
+# 打开 http://127.0.0.1:5173/
 ```
 
-`server.mjs` 默认做两件事：
+Vite 将 `/api/**` 代理到 `http://localhost:8080`，浏览器和 API 同源，Session Cookie 可以正常工作。
+如果后端地址不同，修改 `qimo.config.json` 的 `apiBase`。
 
-1. 把当前目录当静态站点发出去；
-2. 把 `/api/**` 反向代理到 `http://localhost:8080`（后端）。
-
-**代理是关键**：浏览器眼里前后端同源，所以 Session Cookie 完全不用额外配置。
-先用这个方式把整条链路跑通，再去折腾跨源。
-
-后端不在本机时：
+生产构建和本地预览：
 
 ```powershell
-node server.mjs --api http://192.168.1.8:8080
+npm run build
+npm run preview
 ```
-
-换端口：
-
-```powershell
-node server.mjs --port 3000
-```
-
-也可以用 `qimo.config.json` 固定这些参数：
 
 ```json
 {
@@ -81,18 +78,20 @@ node server.mjs --port 3000
 
 ## 3. 后端地址怎么配（`config/api-base.js`）
 
-这是分离改造里最核心的一个文件。三种方式，优先级从高到低：
+Vue 页面在 `src/api.js` 中统一发起请求，默认走同源 `/api`，开发与预览由 Vite/静态服务器代理。
+原有静态文章页仍使用 `config/api-base.js` 与 `app/api.js`，构建时会保留这些资源。
+
+需要跨源直连时，可在启动 Vite 前设置 `VITE_API_BASE`，并同步配置后端 CORS 与 Cookie：
 
 | 方式 | 怎么做 | 适用场景 |
 |---|---|---|
-| 运行时覆盖 | 浏览器控制台 `localStorage.setItem('QIMO_API_BASE','http://192.168.1.8:8080')` 后刷新 | 临时调试、换机器演示 |
-| 改默认值 | 编辑 `config/api-base.js` 里的 `defaultBase` | 固定部署 |
-| 保持留空 | 什么都不做，`defaultBase = ''` 表示**同源** | 反向代理部署（生产推荐） |
+| 开发代理（默认） | `qimo.config.json` 中 `apiBase` 留空 | 本机开发 |
+| 指定后端 | `qimo.config.json` 填 `http://主机:8080` | 开发代理到其他后端 |
+| 跨源直连 | 设置 `VITE_API_BASE` | 前后端分域部署 |
 
-留空（同源）是最省事的做法，因为 `server.mjs` 已经帮你把 `/api` 代理过去了，
-Nginx 部署时也可以用 `location /api/ { proxy_pass http://127.0.0.1:8080; }` 达到同样效果。
+同源代理是最省事的方式。Nginx 部署时也可以用 `location /api/ { proxy_pass http://127.0.0.1:8080; }`。
 
-### 所有请求都走 `QIMO_API`
+### Vue API 客户端与历史静态页
 
 改造后，页面里不再出现裸的 `fetch('/api/...')`：
 
@@ -108,7 +107,9 @@ QIMO_API.put('/api/user/profile', { nickname, bio })
 QIMO_API.auth.me()
 ```
 
-`app/api.js` 里做了四件原来没人做的事：
+Vue 页面通过 `src/api.js` 统一处理 JSON、Session Cookie、401 和网络错误。保留下来的历史静态文章页继续用 `app/api.js` 的 `QIMO_API`。
+
+历史页 API 层还负责：
 
 - **地址统一拼接**：换后端只改一个地方；
 - **`credentials: 'include'`**：跨源时 Cookie 才会带上，否则后端永远认为你没登录；
@@ -125,9 +126,7 @@ QIMO_API.auth.me()
 node tools/verify.mjs
 ```
 
-会检查 7 类问题：HTML 引用的资源是否存在、内链目标是否存在、每个页面是否加载了 API 配置层、
-是否还有裸 `fetch('/api/...')`、是否残留 `/html/...` 这类根路径、JS 语法能否解析、
-是否残留 Windows 反斜杠路径。**搬家类改造最怕"某一页漏了一处"，这个脚本就是拿来兜这个的。**
+会检查 Vue 工程依赖、路由和 API 客户端、旧知识页与静态资源是否保留；Vue 单文件组件再由 `npm run build` 编译校验。
 
 ---
 
@@ -139,7 +138,7 @@ node tools/verify.mjs
 server {
     listen 80;
     server_name bird.example.com;
-    root /var/www/qimo-frontend;      # 把本工程整个目录传上去即可
+    root /var/www/qimo-frontend/dist; # 先执行 npm run build，再部署 dist
     index index.html;
 
     location / {
@@ -159,7 +158,7 @@ server {
 
 前端（任意静态服务器）+ 后端（8080）分别部署，此时必须三件事同时满足，缺一个就一直"未登录"：
 
-1. `config/api-base.js` 里 `defaultBase` 指向后端完整地址；
+1. 构建时通过 `VITE_API_BASE` 配置后端完整地址；
 2. 后端 `application.properties` 的 `app.cors.allowed-origins` 包含前端来源（精确写，不能 `*`）；
 3. 后端 Cookie 能跨站：`server.servlet.session.cookie.same-site=none` + `cookie.secure=true`，
    并且**整个链路必须是 HTTPS**（`SameSite=None` 配 HTTP 会被浏览器直接丢掉）。
@@ -168,8 +167,7 @@ server {
 
 ### 方式三：直接双击 HTML
 
-**不行**。用 `file://` 打开时 `fetch` 会因为跨源被浏览器拦掉，而且 `config/api-base.js` 里的
-同源假设也不成立。请至少用 `server.mjs` 或 `python -m http.server` 起一个静态服务器。
+**不行**。用 `file://` 打开时 Vue 模块和 `fetch` 都不能正常工作。请执行 `npm run dev`，或构建后运行 `npm run preview`。
 
 ---
 
@@ -177,7 +175,7 @@ server {
 
 | 原来 | 现在 |
 |---|---|
-| `src/main/resources/static/main.html` | `index.html` |
+| `src/main/resources/static/main.html` | Vue SPA `index.html` |
 | `src/main/resources/static/html/**` | `html/**`（层数不变，所以页内相对链接不用改） |
 | `src/main/resources/static/{css,js,image}/**` | 同名目录 |
 | `src/main/resources/static/js/auth-modal.js` 里 `/css/auth-modal.css` | 相对路径（支持部署到子路径） |
