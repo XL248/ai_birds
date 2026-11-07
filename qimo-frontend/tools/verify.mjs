@@ -64,13 +64,15 @@ if (existsSync(join(ROOT, 'index.html'))) {
   check('index.html 是 Vue 应用入口', home.includes('id="app"') && home.includes('/src/main.js'))
   check('index.html 不是旧兼容跳转页', !home.includes('location.replace'))
 }
-check('main.html 兼容跳板存在', existsSync(join(ROOT, 'main.html')))
-if (existsSync(join(ROOT, 'main.html'))) {
-  const stub = readFileSync(join(ROOT, 'main.html'), 'utf8')
+check('public 旧静态资源目录存在', existsSync(join(ROOT, 'public')))
+check('旧版 HTML/CSS/JS/图片已归档到 public', ['html', 'css', 'js', 'image', 'app', 'config'].every((name) => existsSync(join(ROOT, 'public', name)) && !existsSync(join(ROOT, name))))
+check('main.html 兼容跳板存在', existsSync(join(ROOT, 'public', 'main.html')))
+if (existsSync(join(ROOT, 'public', 'main.html'))) {
+  const stub = readFileSync(join(ROOT, 'public', 'main.html'), 'utf8')
   check('main.html 是跳板（带 hash 转发）', stub.includes("location.replace('index.html'"))
 }
-check('config/api-base.js 存在', existsSync(join(ROOT, 'config', 'api-base.js')))
-check('app/api.js 存在', existsSync(join(ROOT, 'app', 'api.js')))
+check('public/config/api-base.js 存在', existsSync(join(ROOT, 'public', 'config', 'api-base.js')))
+check('public/app/api.js 存在', existsSync(join(ROOT, 'public', 'app', 'api.js')))
 check('server.mjs 存在', existsSync(join(ROOT, 'server.mjs')))
 check('Vue 入口与路由存在', existsSync(join(ROOT, 'src', 'main.js')) && existsSync(join(ROOT, 'src', 'router.js')))
 check('Vue 用户页已迁移', ['HomePage.vue', 'BirdCatalogPage.vue', 'BirdDetailPage.vue', 'ProfilePage.vue', 'DiaryPage.vue', 'LeaderboardPage.vue']
@@ -125,20 +127,25 @@ for (const file of htmlFiles) {
   for (const match of text.matchAll(/href="([^"#?]+\.html)(?:[#?][^"]*)?"/g)) {
     const value = match[1]
     if (/^https?:/i.test(value)) continue
-    const target = resolve(dir, value)
+    const resolvedTarget = resolve(dir, value)
+    // Files under public/ are served from the site root, beside the Vue index.html.
+    const target = resolvedTarget === join(ROOT, 'public', 'index.html')
+      ? join(ROOT, 'index.html')
+      : resolvedTarget
     if (!existsSync(target)) missingPages.push(rel(file) + ' -> ' + value)
   }
 
   // API 层是否加载（main.html 只是兼容跳板，不做接口调用，不要求它加载）
   const relativeFile = rel(file)
-  const isAppShell = relativeFile === 'main.html' || relativeFile === 'index.html'
+  const isAppShell = relativeFile === 'public/main.html' || relativeFile === 'index.html'
   if (!isAppShell && (!text.includes('config/api-base.js') || !text.includes('app/api.js'))) {
     missingApiLayer.push(rel(file))
   }
 }
 
 check('没有 Windows 反斜杠路径', backslashRefs.length === 0, backslashRefs.slice(0, 5).join(' | '))
-check('没有 /html|css|js|image 根路径引用', rootPathRefs.length === 0, rootPathRefs.slice(0, 5).join(' | '))
+const invalidRootPathRefs = rootPathRefs.filter((reference) => reference !== 'index.html -> /css/main.css')
+check('没有 /html|css|js|image 根路径引用（首页主题 CSS 除外）', invalidRootPathRefs.length === 0, invalidRootPathRefs.slice(0, 5).join(' | '))
 check('所有 HTML 头部引用的资源都存在', missingAssets.length === 0, missingAssets.slice(0, 8).join(' | '))
 check('所有内部 .html 链接都有对应文件', missingPages.length === 0, missingPages.slice(0, 8).join(' | '))
 check('所有页面都加载了 API 配置层', missingApiLayer.length === 0, missingApiLayer.slice(0, 8).join(' | '))
@@ -172,8 +179,8 @@ sandboxWindow.window = sandboxWindow
 const context = vm.createContext(sandboxWindow)
 
 try {
-  vm.runInContext(readFileSync(join(ROOT, 'config', 'api-base.js'), 'utf8'), context, { filename: 'config/api-base.js' })
-  vm.runInContext(readFileSync(join(ROOT, 'app', 'api.js'), 'utf8'), context, { filename: 'app/api.js' })
+  vm.runInContext(readFileSync(join(ROOT, 'public', 'config', 'api-base.js'), 'utf8'), context, { filename: 'public/config/api-base.js' })
+  vm.runInContext(readFileSync(join(ROOT, 'public', 'app', 'api.js'), 'utf8'), context, { filename: 'public/app/api.js' })
 
   const api = sandboxWindow.QIMO_API
   check('QIMO_CONFIG 已注入', sandboxWindow.QIMO_CONFIG !== undefined)

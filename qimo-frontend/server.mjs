@@ -127,6 +127,9 @@ function serveStatic(req, res) {
   if (existsSync(filePath) && statSync(filePath).isDirectory()) {
     filePath = join(filePath, 'index.html')
   }
+  if (!existsSync(filePath) && /^\/(?:birds(?:\/[^/]+)?|diary|leaderboard|profile)$/.test(urlPath)) {
+    filePath = join(STATIC_ROOT, 'index.html')
+  }
   if (!existsSync(filePath) || statSync(filePath).isDirectory()) {
     res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' })
     res.end(

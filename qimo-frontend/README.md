@@ -12,35 +12,26 @@ qimo-frontend/
 ├── index.html                  ← Vue 应用入口
 ├── src/
 │   ├── App.vue                 全局导航、页脚与认证弹窗
-│   ├── router.js               Hash 路由
+│   ├── router.js               保留原首页锚点跳转的 History 路由
 │   ├── api.js                  带 Session Cookie 的 API 客户端
 │   ├── stores/session.js       Pinia 登录态
 │   ├── components/             公用 Vue 组件
 │   ├── pages/                  首页、图鉴、档案、日记、排行榜
 │   └── style.css               响应式样式
-├── vite.config.js              Vue 插件、API 代理、旧内容页打包
+├── public/                     Vite 原样复制到站点根目录的静态文件
+│   ├── html/                   旧版鸟类 / 栖息地 / 保护知识文章
+│   ├── image/                  图片资源
+│   ├── css/、js/               旧静态页面依赖
+│   ├── app/、config/           旧静态页 API 客户端与配置
+│   └── main.html               旧首页地址兼容跳板
+├── vite.config.js              Vue 插件与 API 开发代理
 ├── package.json                Vue / Vite 工程脚本
-├── main.html                   旧地址兼容跳板
-├── config/
-│   └── api-base.js             ★ 唯一决定"后端在哪"的地方
-├── app/
-│   └── api.js                  ★ 统一 API 客户端（QIMO_API）
-├── css/
-│   └── main.css
-├── js/
-│   ├── main.js                 首页交互动画
-│   ├── auth-modal.js           登录/注册模态框 + 导航栏登录态
-│   └── bird-interact.js        鸟类详情页的打卡/收藏/评论
-├── html/
-│   ├── habitat/                8 个栖息地页
-│   ├── Bird-Atlas/             鸟类图鉴（多样性 / 生态价值）
-│   ├── Protection-Action/      保护行动
-│   └── user/                   个人中心 / 观鸟日记 / 排行榜
-├── image/                      全部配图（约 170 MB）
 ├── server.mjs                  构建产物静态服务器 + 接口反向代理
 ├── qimo.config.json            端口 / 代理 / 后端地址
 └── tools/verify.mjs            自检脚本
 ```
+
+`src/` 只放 Vue 应用代码；历史静态页面与其依赖统一放在 `public/`。Vite 会将 `public/` 内容原样复制到构建产物根目录，所以现有 `/html/...`、`/image/...` 地址保持不变。
 
 ---
 
@@ -76,10 +67,10 @@ npm run preview
 
 ---
 
-## 3. 后端地址怎么配（`config/api-base.js`）
+## 3. 后端地址怎么配
 
 Vue 页面在 `src/api.js` 中统一发起请求，默认走同源 `/api`，开发与预览由 Vite/静态服务器代理。
-原有静态文章页仍使用 `config/api-base.js` 与 `app/api.js`，构建时会保留这些资源。
+原有静态文章页仍使用 `public/config/api-base.js` 与 `public/app/api.js`。
 
 需要跨源直连时，可在启动 Vite 前设置 `VITE_API_BASE`，并同步配置后端 CORS 与 Cookie：
 
@@ -107,7 +98,7 @@ QIMO_API.put('/api/user/profile', { nickname, bio })
 QIMO_API.auth.me()
 ```
 
-Vue 页面通过 `src/api.js` 统一处理 JSON、Session Cookie、401 和网络错误。保留下来的历史静态文章页继续用 `app/api.js` 的 `QIMO_API`。
+Vue 页面通过 `src/api.js` 统一处理 JSON、Session Cookie、401 和网络错误。保留下来的历史静态文章页继续用 `public/app/api.js` 的 `QIMO_API`。
 
 历史页 API 层还负责：
 
@@ -142,7 +133,7 @@ server {
     index index.html;
 
     location / {
-        try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.html;
     }
 
     # 同源反向代理，Cookie 不需要任何跨源设置
@@ -176,8 +167,8 @@ server {
 | 原来 | 现在 |
 |---|---|
 | `src/main/resources/static/main.html` | Vue SPA `index.html` |
-| `src/main/resources/static/html/**` | `html/**`（层数不变，所以页内相对链接不用改） |
-| `src/main/resources/static/{css,js,image}/**` | 同名目录 |
+| `src/main/resources/static/html/**` | `public/html/**`（发布后仍位于站点 `/html/**`） |
+| `src/main/resources/static/{css,js,image}/**` | `public/{css,js,image}/**`（发布 URL 不变） |
 | `src/main/resources/static/js/auth-modal.js` 里 `/css/auth-modal.css` | 相对路径（支持部署到子路径） |
 | 导航下拉里的 `/html/user/profile.html` | `profile.html`（同目录相对路径） |
 | 全站 `main.html` 链接 | `index.html`（`main.html` 保留为跳板） |

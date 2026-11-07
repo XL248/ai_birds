@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './pages/HomePage.vue'
 import BirdCatalogPage from './pages/BirdCatalogPage.vue'
 import BirdDetailPage from './pages/BirdDetailPage.vue'
@@ -7,7 +7,7 @@ import LeaderboardPage from './pages/LeaderboardPage.vue'
 import ProfilePage from './pages/ProfilePage.vue'
 
 export default createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   scrollBehavior() {
     return { top: 0 }
   },

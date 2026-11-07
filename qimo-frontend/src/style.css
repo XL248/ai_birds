@@ -417,6 +417,26 @@ textarea { min-height: 86px; resize: vertical; line-height: 1.65; }
   .site-footer { align-items: start; flex-direction: column; gap: 8px; padding: 20px 16px; }
 }
 
+.nav-auth-area { display: flex; align-items: center; gap: 8px; margin-left: 8px; }
+.nav-auth-area .nav-login-btn { padding: 4px 14px; border: 1px solid #5f8a4a; border-radius: 30px; background: rgba(70,110,60,.2); color: #9fc88a; font-family: 'Cinzel', serif; font-size: .95rem; letter-spacing: 1px; }
+.nav-auth-area .nav-login-btn:hover { border-color: #8fc078; background: #3f6a30; color: #d4e8c0; text-shadow: none; }
+.nav-user-menu { position: relative; display: inline-flex; align-items: center; }
+.nav-user-menu .nav-user-name { display: inline-flex; align-items: center; gap: 5px; padding: 4px 2px; border: 0; background: transparent; color: #b8d8a0; font-family: 'Cinzel', serif; font-size: .9rem; white-space: nowrap; cursor: pointer; }
+.nav-user-menu .nav-user-name:hover { color: #d4e8c0; }
+.nav-user-menu .nav-user-name .fa-caret-down { font-size: .7rem; }
+.nav-user-dropdown { position: absolute; z-index: 1001; top: calc(100% + 4px); right: 0; display: none; min-width: 150px; padding: 6px 0; border: 1px solid #5f8a4a; border-radius: 16px; background: rgba(15,20,15,.97); backdrop-filter: blur(12px); }
+.nav-user-dropdown.open { display: block; }
+.nav-user-dropdown a, .nav-user-dropdown button { display: block; width: 100%; padding: 10px 18px; border: 0; background: transparent; color: #c8e0b0; font-family: 'Cinzel', serif; font-size: .85rem; letter-spacing: 1px; text-align: left; white-space: nowrap; cursor: pointer; }
+.nav-user-dropdown a:hover, .nav-user-dropdown button:hover { background: rgba(70,110,60,.3); color: #f0f8e8; text-shadow: none; }
+.nav-user-dropdown a i, .nav-user-dropdown button i { width: 20px; margin-right: 6px; }
+.nav-logout-btn { color: #7fa06a !important; }
+.nav-logout-btn:hover { color: #d4a0a0 !important; }
+.nav-guest-menu { margin-left: 4px; }
+@media (max-width: 900px) {
+  .nav-auth-area { flex-direction: column; align-items: center; margin-left: 0; padding: 8px 0; }
+  .nav-user-dropdown { right: auto; left: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }

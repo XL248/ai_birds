@@ -1,18 +1,32 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
-import { Bird, BookOpen, ChevronDown, Feather, LogIn, LogOut, Menu, NotebookPen, Trophy, UserRound, X } from 'lucide-vue-next'
+import { Menu, X } from 'lucide-vue-next'
 import AuthModal from './components/AuthModal.vue'
 import { useSessionStore } from './stores/session.js'
 
 const session = useSessionStore()
 const route = useRoute()
 const menuOpen = ref(false)
+const userMenuOpen = ref(false)
 
 onMounted(() => session.refresh())
 
 function closeMenu() {
   menuOpen.value = false
+  userMenuOpen.value = false
+}
+
+function sectionHref(id) {
+  return route.path === '/' ? `#${id}` : `/index.html#${id}`
+}
+
+function navigateToSection(event, id) {
+  if (route.path !== '/') return
+  event.preventDefault()
+  window.history.replaceState(null, '', `#${id}`)
+  const target = document.getElementById(id)
+  if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' })
 }
 
 async function logout() {
@@ -23,36 +37,46 @@ async function logout() {
 
 <template>
   <div class="app-shell">
-    <header class="site-header">
-      <div class="header-inner">
-        <RouterLink class="brand" to="/" @click="closeMenu">
-          <span class="brand-mark"><Feather :size="19" /></span>
-          <span>羽翼守望者<small>WINGWATCH</small></span>
-        </RouterLink>
-
-        <button class="mobile-menu-button icon-button" type="button" :aria-label="menuOpen ? '关闭导航' : '打开导航'" @click="menuOpen = !menuOpen">
-          <X v-if="menuOpen" :size="20" />
-          <Menu v-else :size="20" />
-        </button>
-
-        <nav class="main-nav" :class="{ 'is-open': menuOpen }" aria-label="主导航">
-          <RouterLink to="/birds" :class="{ active: route.path.startsWith('/birds') }" @click="closeMenu"><Bird :size="16" /> 鸟类图鉴</RouterLink>
-          <RouterLink to="/diary" :class="{ active: route.path === '/diary' }" @click="closeMenu"><NotebookPen :size="16" /> 观鸟日记</RouterLink>
-          <RouterLink to="/leaderboard" :class="{ active: route.path === '/leaderboard' }" @click="closeMenu"><Trophy :size="16" /> 排行榜</RouterLink>
-          <a href="/html/Protection-Action/Habitat-Protection/protected-areas.html" @click="closeMenu"><BookOpen :size="16" /> 保护知识 <ChevronDown class="nav-external" :size="13" /></a>
-          <RouterLink v-if="session.user" class="mobile-profile-link" to="/profile" @click="closeMenu"><UserRound :size="16" /> {{ session.user.username }}</RouterLink>
-          <button v-if="session.user" class="mobile-profile-link" type="button" @click="logout"><LogOut :size="16" /> 退出登录</button>
-          <button v-else class="mobile-profile-link" type="button" @click="session.openAuth('login'); closeMenu()"><LogIn :size="16" /> 登录 / 注册</button>
+    <header class="navbar">
+      <div class="container nav-container">
+        <RouterLink class="logo" to="/" @click="closeMenu"><i class="fas fa-feather-alt"></i> 羽翼守望者</RouterLink>
+        <div class="nav-gif"><img src="/image/top_yelu.gif" alt="夜鹭" /></div>
+        <nav aria-label="主导航">
+          <ul class="nav-links" :class="{ active: menuOpen }">
+            <li><a :href="sectionHref('hero')" @click="navigateToSection($event, 'hero'); closeMenu()">首页</a></li>
+            <li><a :href="sectionHref('bird-guide')" @click="navigateToSection($event, 'bird-guide'); closeMenu()">鸟类图鉴</a></li>
+            <li><a :href="sectionHref('conservation')" @click="navigateToSection($event, 'conservation'); closeMenu()">保护行动</a></li>
+            <li><a :href="sectionHref('habitat')" @click="navigateToSection($event, 'habitat'); closeMenu()">栖息地</a></li>
+            <li><a :href="sectionHref('gallery')" @click="navigateToSection($event, 'gallery'); closeMenu()">观鸟日记</a></li>
+            <li class="nav-auth-area" :class="{ 'nav-auth-area-open': userMenuOpen }">
+              <template v-if="session.user">
+                <div class="nav-user-menu">
+                  <button class="nav-user-name nav-dropdown-toggle" type="button" @click="userMenuOpen = !userMenuOpen"><i class="fas fa-feather-alt"></i> {{ session.user.username }} <i class="fas fa-caret-down"></i></button>
+                  <div class="nav-user-dropdown" :class="{ open: userMenuOpen }">
+                    <a href="/html/user/profile.html" @click="closeMenu"><i class="fas fa-user"></i>个人中心</a>
+                    <a href="/html/user/diary.html" @click="closeMenu"><i class="fas fa-book-open"></i>观鸟日记</a>
+                    <a href="/html/user/leaderboard.html" @click="closeMenu"><i class="fas fa-trophy"></i>排行榜</a>
+                    <button class="nav-logout-btn" type="button" @click="logout"><i class="fas fa-sign-out-alt"></i>退出</button>
+                  </div>
+                </div>
+              </template>
+              <template v-else>
+                <a href="#login" class="nav-login-btn" @click.prevent="session.openAuth('login')"><i class="fas fa-user"></i> 登录</a>
+                <div class="nav-user-menu nav-guest-menu">
+                  <button class="nav-user-name nav-dropdown-toggle" type="button" aria-label="更多社区页面" @click="userMenuOpen = !userMenuOpen"><i class="fas fa-ellipsis-h"></i></button>
+                  <div class="nav-user-dropdown" :class="{ open: userMenuOpen }">
+                    <a href="/html/user/leaderboard.html" @click="closeMenu"><i class="fas fa-trophy"></i>排行榜</a>
+                    <a href="/html/user/diary.html" @click="closeMenu"><i class="fas fa-book-open"></i>观鸟日记</a>
+                  </div>
+                </div>
+              </template>
+            </li>
+          </ul>
+          <button class="menu-toggle" type="button" :aria-label="menuOpen ? '关闭导航' : '打开导航'" @click="menuOpen = !menuOpen">
+            <X v-if="menuOpen" :size="22" />
+            <Menu v-else :size="22" />
+          </button>
         </nav>
-
-        <div class="header-actions">
-          <RouterLink v-if="session.user" class="account-link" to="/profile" :title="session.user.username">
-            <span class="account-avatar">{{ session.user.username.slice(0, 1).toUpperCase() }}</span>
-            <span>{{ session.user.username }}</span>
-          </RouterLink>
-          <button v-if="session.user" class="icon-button logout-button" type="button" title="退出登录" @click="logout"><LogOut :size="17" /></button>
-          <button v-else class="button button-small button-outline" type="button" @click="session.openAuth('login')">登录 <LogIn :size="15" /></button>
-        </div>
       </div>
     </header>
 
@@ -60,10 +84,16 @@ async function logout() {
       <RouterView />
     </main>
 
-    <footer class="site-footer">
-      <RouterLink class="footer-brand" to="/"><Feather :size="17" /> 羽翼守望者</RouterLink>
-      <span>记录每一次相遇，守护每一片栖息地。</span>
-      <a href="/html/Protection-Action/Publicize/community-participation.html">参与保护行动</a>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <RouterLink class="footer-logo" to="/"><i class="fas fa-feather-alt"></i> 羽翼守望者</RouterLink>
+          <div class="footer-text">
+            <p>🌱 与自然共生 · 为鸟类护航 🌱</p>
+            <p class="copyright">© 绿水青山，就是金山银山 | created by bxy，hqp，tsy</p>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <AuthModal />
